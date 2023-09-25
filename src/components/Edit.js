@@ -18,17 +18,19 @@ function Edit() {
     setId(localStorage.getItem('Id'));
   }, []);
 
+  var index = Employees.map(function(e) {
+    return e.id
+  }).indexOf(id);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (id !== "") {
-      let index = Employees.findIndex(e => e.id === id);
-      if (index !== -1) {
-        let updatedEmployee = { ...Employees[index], Name: name, Age: age };
-        Employees[index] = updatedEmployee;
-      }
-    }
+   
+     let a = Employees[index];
+     a.name = name;
+     a.age = age;
     history("/");
   }
+
 
   return (
     <div>
