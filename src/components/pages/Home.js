@@ -37,7 +37,7 @@ const Home = () => {
       }}
     >
       <Navbar bg="light" expand="lg" className="bg-body-tertiary">
-        <Container>
+        <Container style={{ background: "purple" }}>
           <Navbar.Brand href="#home">Sewa ruang</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -67,7 +67,7 @@ const Home = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
+      <br></br>
       <div className="home">
         {userRole === "supervisor" ? (
           <h1>WELCOME SUPERVISOR</h1>

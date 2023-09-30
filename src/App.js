@@ -7,6 +7,7 @@ import Edit from "./components/pages/Edit";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
+import TableOrders from "./components/pages/TableOrders";
 import PrivateHome from "./privateRouter/privateHome";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -38,6 +39,14 @@ function App() {
             element={
               <PrivateHome>
                 <Edit />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/tableOrders"
+            element={
+              <PrivateHome>
+                <TableOrders />
               </PrivateHome>
             }
           />

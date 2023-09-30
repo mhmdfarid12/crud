@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/Login.css"; // Impor file CSS
 import Swal from "sweetalert2";
+import Accounts from "../database/Accounts";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -24,9 +25,9 @@ const Login = () => {
     e.preventDefault();
 
     if (formData.username !== "" && formData.password !== "") {
-      const storedAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
+      // const storedAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
 
-      const existingAccount = storedAccounts.find(
+      const existingAccount = Accounts.find(
         (account) =>
           account.username === formData.username &&
           account.password === formData.password
@@ -41,7 +42,6 @@ const Login = () => {
           timer: 1500,
         });
         localStorage.setItem("UserRole", existingAccount.role);
-        console.log(storedAccounts);
         navigate("/Home");
       } else {
         Swal.fire({

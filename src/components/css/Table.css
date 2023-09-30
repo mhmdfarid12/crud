@@ -1,0 +1,7 @@
+/* Tambahkan kode berikut di dalam file CSS Anda */
+
+.table {
+    background-color: rgba(255, 255, 255, 0.8); /* Menggunakan RGBA untuk memberikan transparansi */
+    /* Atau gunakan background-color: transparent; untuk membuat latar belakang benar-benar transparan */
+  }
+  
