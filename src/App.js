@@ -8,7 +8,10 @@ import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import TableOrders from "./components/pages/TableOrders";
+import TableCustomers from "./components/pages/TableCustomers";
 import PrivateHome from "./privateRouter/privateHome";
+import EditCustomers from "./components/pages/EditCustomers";
+import AddCustomers from "./components/pages/AddCustomers";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -47,6 +50,30 @@ function App() {
             element={
               <PrivateHome>
                 <TableOrders />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/tableCustomers"
+            element={
+              <PrivateHome>
+                <TableCustomers />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/editCustomers"
+            element={
+              <PrivateHome>
+                <EditCustomers />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/addCustomers"
+            element={
+              <PrivateHome>
+                <AddCustomers />
               </PrivateHome>
             }
           />

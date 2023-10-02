@@ -3,7 +3,8 @@ import { Button, Table, Pagination } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Accounts from "../database/Accounts";
 import Rooms from "../database/Rooms";
-import tableOrders from "./TableOrders";
+import TableOrders from "./TableOrders";
+import TableCustomers from "./TableCustomers";
 import "../css/Table.css";
 
 import Container from "react-bootstrap/Container";
@@ -176,7 +177,7 @@ function Tabel() {
                     <Nav.Link href="/home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
                     <Nav.Link href="/table">Table</Nav.Link>
-                    <Nav.Link href="/tableOrders">Table orders</Nav.Link>
+                    <Nav.Link href="/TableOrders">Table orders</Nav.Link>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                       <NavDropdown.Item href="#action/3.1">
                         Action
@@ -335,6 +336,7 @@ function Tabel() {
                     <Nav.Link href="/home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
                     <Nav.Link href="/table">Table</Nav.Link>
+                    <Nav.Link href="/tableCustomers">Table Customers</Nav.Link>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                       <NavDropdown.Item href="#action/3.1">
                         Action

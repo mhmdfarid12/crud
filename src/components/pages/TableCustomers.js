@@ -1,34 +1,36 @@
 import React, { Fragment, useState } from "react";
 import { Button, Table, Pagination } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Orders from "../database/Orders"; // Menggunakan data dari file Orders.js
+import Customers from "../database/Customers";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
+import Add from "./Add";
 
-function TableOrders() {
+function TableCustomers() {
+  // Tambahkan useNavigate
+
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [recordsPerPage, setRecordsPerPage] = useState(5);
 
-  const [disabledItems, setDisabledItems] = useState({});
-
+  // function for supervisor START
   const firstIndex = (currentPage - 1) * recordsPerPage;
   const lastIndex = currentPage * recordsPerPage;
 
-  const filteredOrders = Orders.filter(
-    (order) =>
-      order.rooms.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      order.role !== "supervisor"
+  const filteredCustomers = Customers.filter(
+    (customer) =>
+      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      customer.role !== "operator"
   );
 
-  const records = filteredOrders.slice(firstIndex, lastIndex);
+  const records = filteredCustomers.slice(firstIndex, lastIndex);
 
-  const npage = Math.ceil(filteredOrders.length / recordsPerPage);
+  const npage = Math.ceil(filteredCustomers.length / recordsPerPage);
   const number = [...Array(npage + 1).keys()].slice(1);
 
   function prePage() {
@@ -47,6 +49,21 @@ function TableOrders() {
     }
   }
 
+  const handleEdit = (id, name, phone, payMethod) => {
+    localStorage.setItem("Id", id);
+    localStorage.setItem("name", name);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("payMethod", payMethod);
+  };
+
+  const handleDelete = (id) => {
+    var index = Customers.map(function (e) {
+      return e.id;
+    }).indexOf(id);
+    Customers.splice(index, 1);
+
+    navigate("/tableCustomers");
+  };
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
@@ -55,18 +72,6 @@ function TableOrders() {
       position: "top-middle",
       icon: "success",
       title: "LOGOUT Berhasil!!",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  };
-
-  const disableButton = (index) => {
-    setDisabledItems((prev) => ({ ...prev, [index]: true }));
-
-    Swal.fire({
-      position: "top-middle",
-      icon: "success",
-      title: "Approv berhasil!!",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -99,7 +104,7 @@ function TableOrders() {
                   <Nav.Link href="/home">Home</Nav.Link>
                   <Nav.Link href="#link">Link</Nav.Link>
                   <Nav.Link href="/table">Table</Nav.Link>
-                  <Nav.Link href="/tableOrders">Table orders</Nav.Link>
+                  <Nav.Link href="/TableOrders">Table orders</Nav.Link>
                   <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">
                       Action
@@ -129,7 +134,7 @@ function TableOrders() {
             <div style={{ display: "flex", alignItems: "center" }}>
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 style={{
@@ -166,38 +171,53 @@ function TableOrders() {
             <Table striped bordered hover size="sm">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Rooms</th>
-                  <th>Capacity</th>
-                  <th>Snack</th>
-                  <th>Lunch</th>
-                  <th>Extra Time</th>
-                  <th>Booking</th>
-                  <th>Actions</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Pay Method</th>
+                  <th>Action</th>
                 </tr>
               </thead>
-
               <tbody>
-                {records.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.id}</td>
-                    <td>{item.rooms}</td>
-                    <td>{item.capacity}</td>
-                    <td>{item.snack === true ? "ada" : "tidak ada"}</td>
-                    <td>{item.lunch === true ? "ada" : "tidak ada"}</td>
-                    <td>{item.extraTime === true ? "ada" : "tidak ada"}</td>
-                    <td>{item.booking}</td>
-                    <td>
-                      <button
-                        style={{ background: "purple", borderRadius: "5px" }}
-                        disabled={disabledItems[index]}
-                        onClick={() => disableButton(index)}
-                      >
-                        Approve
-                      </button>
-                    </td>
+                {filteredCustomers && filteredCustomers.length > 0 ? (
+                  records.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{item.name}</td>
+                        <td>{item.phone}</td>
+                        <td>{item.payMethod}</td>
+
+                        <td>
+                          <Link to={"/editCustomers"}>
+                            <Button
+                              style={{ background: "purple" }}
+                              onClick={() =>
+                                handleEdit(
+                                  item.id,
+                                  item.name,
+                                  item.phone,
+                                  item.payMethod
+                                )
+                              }
+                            >
+                              EDIT
+                            </Button>
+                          </Link>
+                          &nbsp;
+                          <Button
+                            style={{ background: "purple" }}
+                            onClick={() => handleDelete(item.id)}
+                          >
+                            DELETE
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan="3">No data available</td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </Table>
 
@@ -214,6 +234,13 @@ function TableOrders() {
               ))}
               <Pagination.Next onClick={nextPage} />
             </Pagination>
+
+            <br />
+            <Link className="d-grid gap-2" to="/addCustomers">
+              <Button style={{ background: "purple" }} size="lg">
+                Create
+              </Button>
+            </Link>
           </div>
         </Fragment>
       </div>
@@ -221,4 +248,4 @@ function TableOrders() {
   );
 }
 
-export default TableOrders;
+export default TableCustomers;
