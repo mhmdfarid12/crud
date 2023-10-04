@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Button, Table, Pagination } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Accounts from "../database/Accounts";
@@ -13,6 +13,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Tabel() {
   // Tambahkan useNavigate
@@ -23,19 +24,30 @@ function Tabel() {
   const [searchTerm, setSearchTerm] = useState("");
   const [recordsPerPage, setRecordsPerPage] = useState(5);
 
+  const [accounts, setAccounts] = useState([]);
+  const getAccounts = async () => {
+    try {
+      const respons = await axios.get(" http://localhost:1234/accounts");
+      const allAccounts = respons.data;
+      const filteredEmployees = allAccounts.filter(
+        (employee) =>
+          employee.username.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          employee.role !== "supervisor"
+      );
+      setAccounts(filteredEmployees);
+      console.log(filteredEmployees);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // function for supervisor START
   const firstIndex = (currentPage - 1) * recordsPerPage;
   const lastIndex = currentPage * recordsPerPage;
 
-  const filteredEmployees = Accounts.filter(
-    (employee) =>
-      employee.username.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      employee.role !== "supervisor"
-  );
+  // const records = filteredEmployees.slice(firstIndex, lastIndex);
 
-  const records = filteredEmployees.slice(firstIndex, lastIndex);
-
-  const npage = Math.ceil(filteredEmployees.length / recordsPerPage);
+  const npage = Math.ceil(accounts.length / recordsPerPage);
   const number = [...Array(npage + 1).keys()].slice(1);
 
   function prePage() {
@@ -146,6 +158,10 @@ function Tabel() {
     });
   };
 
+  useEffect(() => {
+    getAccounts();
+  }, [currentPage, searchTerm]);
+
   //function operator END
 
   return (
@@ -252,8 +268,8 @@ function Tabel() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredEmployees && filteredEmployees.length > 0 ? (
-                    records.map((item, index) => {
+                  {accounts && accounts.length > 0 ? (
+                    accounts.map((item, index) => {
                       return (
                         <tr key={index}>
                           <td>{item.username}</td>

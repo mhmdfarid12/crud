@@ -12,6 +12,8 @@ import TableCustomers from "./components/pages/TableCustomers";
 import PrivateHome from "./privateRouter/privateHome";
 import EditCustomers from "./components/pages/EditCustomers";
 import AddCustomers from "./components/pages/AddCustomers";
+import EditOrders from "./components/pages/EditOrders";
+import AddOrders from "./components/pages/AddOrders";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -74,6 +76,22 @@ function App() {
             element={
               <PrivateHome>
                 <AddCustomers />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/editOrders"
+            element={
+              <PrivateHome>
+                <EditOrders />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/addOrders"
+            element={
+              <PrivateHome>
+                <AddOrders />
               </PrivateHome>
             }
           />
