@@ -3,8 +3,8 @@ import { Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { v4 as uuid } from "uuid";
-import { Link, useNavigate } from "react-router-dom";
-import Customers from "../database/Customers";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 function EditCustomers() {
   const [name, setName] = useState("");
@@ -12,21 +12,28 @@ function EditCustomers() {
   const [payMethod, setPayMethod] = useState("");
   const [id, setId] = useState("");
 
-  var index = Customers.map(function (e) {
-    return e.id;
-  }).indexOf(id);
+  let history = useNavigate();
+  const param = useParams();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    let a = Customers[index];
-    a.name = name;
-    a.phone = phone;
-    a.payMethod = payMethod;
+    const riquest = {
+      name: name,
+      phone: phone,
+      payMethod: payMethod,
+    };
+    try {
+      const respons = await axios.put(
+        `http://localhost:1234/customers/${param.id}`,
+        riquest
+      );
+      console.log(respons.data);
+      console.log("updated");
+    } catch (error) {
+      console.log(error);
+    }
     history("/tableCustomers");
   };
-
-  let history = useNavigate();
 
   useEffect(() => {
     setName(localStorage.getItem("name"));

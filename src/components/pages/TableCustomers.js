@@ -1,14 +1,14 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Button, Table, Pagination } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Customers from "../database/Customers";
+
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
-import Add from "./Add";
+import axios from "axios";
 
 function TableCustomers() {
   // Tambahkan useNavigate
@@ -17,20 +17,31 @@ function TableCustomers() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [recordsPerPage, setRecordsPerPage] = useState(5);
-
+  const [customers, setCustomers] = useState([]);
   // function for supervisor START
+
+  const getCustomers = async () => {
+    try {
+      const respons = await axios.get("http://localhost:1234/customers");
+      const allCustomers = respons.data;
+      const filteredCustomers = allCustomers.filter(
+        (employee) =>
+          employee.name?.toLowerCase().includes(searchTerm?.toLowerCase()) &&
+          employee.role !== "supervisor"
+      );
+
+      setCustomers(filteredCustomers);
+      console.log(filteredCustomers);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const firstIndex = (currentPage - 1) * recordsPerPage;
   const lastIndex = currentPage * recordsPerPage;
+  const records = customers.slice(firstIndex, lastIndex);
 
-  const filteredCustomers = Customers.filter(
-    (customer) =>
-      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      customer.role !== "operator"
-  );
-
-  const records = filteredCustomers.slice(firstIndex, lastIndex);
-
-  const npage = Math.ceil(filteredCustomers.length / recordsPerPage);
+  const npage = Math.ceil(customers.length / recordsPerPage);
   const number = [...Array(npage + 1).keys()].slice(1);
 
   function prePage() {
@@ -56,12 +67,17 @@ function TableCustomers() {
     localStorage.setItem("payMethod", payMethod);
   };
 
-  const handleDelete = (id) => {
-    var index = Customers.map(function (e) {
-      return e.id;
-    }).indexOf(id);
-    Customers.splice(index, 1);
-
+  const handleDelete = async (id) => {
+    try {
+      const respons = await axios.delete(
+        `http://localhost:1234/customers/${id}`
+      );
+      console.log(respons);
+      console.log("deleted");
+      getCustomers();
+    } catch (error) {
+      console.log(error);
+    }
     navigate("/tableCustomers");
   };
   const handleLogout = () => {
@@ -76,6 +92,10 @@ function TableCustomers() {
       timer: 1500,
     });
   };
+
+  useEffect(() => {
+    getCustomers();
+  }, []);
 
   return (
     <div
@@ -179,7 +199,7 @@ function TableCustomers() {
                 </tr>
               </thead>
               <tbody>
-                {filteredCustomers && filteredCustomers.length > 0 ? (
+                {customers && customers.length > 0 ? (
                   records.map((item, index) => {
                     return (
                       <tr key={index}>
@@ -188,7 +208,7 @@ function TableCustomers() {
                         <td>{item.payMethod}</td>
 
                         <td>
-                          <Link to={"/editCustomers"}>
+                          <Link to={`/editCustomers/${item.id}`}>
                             <Button
                               style={{ background: "purple" }}
                               onClick={() =>

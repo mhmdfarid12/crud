@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Accounts from "../database/Accounts";
-import Rooms from "../database/Rooms";
+
 import { v4 as uuid } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Add() {
   const userRole = localStorage.getItem("UserRole");
@@ -18,23 +18,30 @@ function Add() {
 
   let navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const ids = uuid();
     let uniqueId = ids.slice(0, 8);
 
-    let a = username,
-      b = email,
-      c = password;
-
-    Accounts.push({
+    const riquest = {
       id: uniqueId,
-      username: a,
-      email: b,
-      password: c,
+      username: username,
+      email: email,
+      password: password,
       role: "operator",
-    });
+    };
+
+    try {
+      const respons = await axios.post(
+        "http://localhost:1234/accounts",
+        riquest
+      );
+      console.log(respons);
+      console.log("added");
+    } catch (error) {
+      console.log(error);
+    }
 
     navigate("/table");
   };
@@ -42,20 +49,25 @@ function Add() {
 
   //function operator START
 
-  const handelSubmit = (e) => {
+  const handelSubmit = async (e) => {
     e.preventDefault();
 
     const ids = uuid();
     let uniqueId = ids.slice(0, 8);
 
-    let a = noLantai,
-      b = noKamar;
-
-    Rooms.push({
+    const riquest = {
       id: uniqueId,
-      noLantai: a,
-      noKamar: b,
-    });
+      noLantai: noLantai,
+      noKamar: noKamar,
+    };
+
+    try {
+      const respons = await axios.post("http://localhost:1234/rooms", riquest);
+      console.log(respons);
+      console.log("added");
+    } catch (error) {
+      console.log(error);
+    }
 
     navigate("/table");
   };

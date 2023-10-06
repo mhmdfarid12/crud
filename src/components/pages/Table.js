@@ -1,10 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Button, Table, Pagination } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Accounts from "../database/Accounts";
-import Rooms from "../database/Rooms";
-import TableOrders from "./TableOrders";
-import TableCustomers from "./TableCustomers";
+
 import "../css/Table.css";
 
 import Container from "react-bootstrap/Container";
@@ -24,28 +21,38 @@ function Tabel() {
   const [searchTerm, setSearchTerm] = useState("");
   const [recordsPerPage, setRecordsPerPage] = useState(5);
 
+  const [currPage, setCurrPage] = useState(1);
+  const [srcTerm, setSrcTerm] = useState("");
+  const [rcdPerPage, setRcdPerPage] = useState(5);
+
   const [accounts, setAccounts] = useState([]);
+  const [rooms, setRooms] = useState([]);
+
+  // function for supervisor START
+
   const getAccounts = async () => {
     try {
-      const respons = await axios.get(" http://localhost:1234/accounts");
+      const respons = await axios.get("http://localhost:1234/accounts");
       const allAccounts = respons.data;
-      const filteredEmployees = allAccounts.filter(
+      const filteredAccounts = allAccounts.filter(
         (employee) =>
-          employee.username.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          employee.username
+            ?.toLowerCase()
+            .includes(searchTerm?.toLowerCase()) &&
           employee.role !== "supervisor"
       );
-      setAccounts(filteredEmployees);
-      console.log(filteredEmployees);
+      setAccounts(filteredAccounts);
+      console.log(filteredAccounts);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // function for supervisor START
   const firstIndex = (currentPage - 1) * recordsPerPage;
   const lastIndex = currentPage * recordsPerPage;
-
-  // const records = filteredEmployees.slice(firstIndex, lastIndex);
+  const npg = Math.ceil(rooms.length / recordsPerPage);
+  const num = [...Array(npg + 1).keys()].slice(1);
+  const records = accounts.slice(firstIndex, lastIndex);
 
   const npage = Math.ceil(accounts.length / recordsPerPage);
   const number = [...Array(npage + 1).keys()].slice(1);
@@ -73,11 +80,17 @@ function Tabel() {
     localStorage.setItem("password", password);
   };
 
-  const handleDelete = (id) => {
-    var index = Accounts.map(function (e) {
-      return e.id;
-    }).indexOf(id);
-    Accounts.splice(index, 1);
+  const handleDelete = async (id) => {
+    try {
+      const respons = await axios.delete(
+        `http://localhost:1234/accounts/${id}`
+      );
+      console.log(respons);
+      console.log("deleted");
+      getAccounts();
+    } catch (error) {
+      console.log(error);
+    }
 
     navigate("/table");
   };
@@ -97,23 +110,24 @@ function Tabel() {
 
   // function for operator START
 
-  const [currPage, setCurrPage] = useState(1);
-  const [srcTerm, setSrcTerm] = useState("");
-  const [rcdPerPage, setRcdPerPage] = useState(5);
+  const getRooms = async () => {
+    try {
+      const respons = await axios.get("http://localhost:1234/rooms");
+      const allRooms = respons.data;
+      const filteredRooms = allRooms.filter((employee) =>
+        employee.noLantai?.toLowerCase().includes(srcTerm?.toLowerCase())
+      );
+      setRooms(filteredRooms);
+      console.log(filteredRooms);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const firstIdx = (currPage - 1) * rcdPerPage;
   const lastIdx = currPage * rcdPerPage;
 
-  const filteredOperator = Rooms.filter(
-    (employee) =>
-      employee.noLantai.toLowerCase().includes(srcTerm.toLowerCase()) &&
-      employee.role !== "supervisor"
-  );
-
-  const rcd = filteredOperator.slice(firstIdx, lastIdx);
-
-  const npg = Math.ceil(filteredOperator.length / recordsPerPage);
-  const num = [...Array(npg + 1).keys()].slice(1);
+  const rcd = rooms.slice(firstIdx, lastIdx);
 
   function prPage() {
     if (currPage !== 1) {
@@ -137,12 +151,15 @@ function Tabel() {
     localStorage.setItem("Id", id);
   };
 
-  const del = (id) => {
-    var index = Rooms.map(function (e) {
-      return e.id;
-    }).indexOf(id);
-    Rooms.splice(index, 1);
-
+  const del = async (id) => {
+    try {
+      const respons = await axios.delete(` http://localhost:1234/rooms/${id}`);
+      console.log(respons);
+      console.log("deleted");
+      getRooms();
+    } catch (error) {
+      console.log(error);
+    }
     navigate("/table");
   };
   const logout = () => {
@@ -160,10 +177,10 @@ function Tabel() {
 
   useEffect(() => {
     getAccounts();
-  }, [currentPage, searchTerm]);
+    getRooms();
+  }, [srcTerm, searchTerm]);
 
   //function operator END
-
   return (
     <div
       style={{
@@ -269,7 +286,7 @@ function Tabel() {
                 </thead>
                 <tbody>
                   {accounts && accounts.length > 0 ? (
-                    accounts.map((item, index) => {
+                    records.map((item, index) => {
                       return (
                         <tr key={index}>
                           <td>{item.username}</td>
@@ -277,7 +294,7 @@ function Tabel() {
                           <td>{item.password}</td>
                           <td>{item.role}</td>
                           <td>
-                            <Link to={"/edit"}>
+                            <Link to={`/edit/${item.id}`}>
                               <Button
                                 style={{ background: "purple" }}
                                 onClick={() =>
@@ -424,7 +441,7 @@ function Tabel() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredOperator && filteredOperator.length > 0 ? (
+                  {rooms && rooms.length > 0 ? (
                     rcd.map((item, index) => {
                       return (
                         <tr key={index}>
@@ -432,7 +449,7 @@ function Tabel() {
                           <td>{item.noKamar}</td>
 
                           <td>
-                            <Link to={"/edit"}>
+                            <Link to={`/edit/${item.id}`}>
                               <Button
                                 style={{ background: "purple" }}
                                 onClick={() =>

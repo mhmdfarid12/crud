@@ -2,73 +2,39 @@ import React, { useState } from "react";
 import "../css/Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
+import { v4 as uuid } from "uuid";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    role: "supervisor",
-  });
   const navigate = useNavigate();
-  const accounts = [
-    {
-      id: 0,
-      email: "youremail@gmail.com",
-      username: "yourname",
-      password: "yourpassword",
-      role: "supervisor",
-    },
-  ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const ids = uuid();
+    let uniqueId = ids.slice(0, 8);
+    const riquest = {
+      id: uniqueId,
+      username: username,
+      email: email,
+      password: password,
+      role: "supervisor",
+    };
 
-    if (
-      formData.username !== "" &&
-      formData.email !== "" &&
-      formData.password !== "" &&
-      formData.role !== ""
-    ) {
-      const newAccount = {
-        id: accounts.length,
-        email: formData.email,
-        username: formData.username,
-        password: formData.password,
-        role: formData.role,
-      };
-
-      // Menambahkan akun baru ke array accounts
-      accounts.push(newAccount);
-
-      // Menyimpan array accounts di localStorage
-      localStorage.setItem("accounts", JSON.stringify(accounts));
-
-      // alert("Registrasi berhasil!");
-      Swal.fire({
-        position: "top-middle",
-        icon: "success",
-        title: "Register Berhasil!!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      console.log(accounts);
-
-      navigate("/login");
-
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-      });
+    if (username !== "" && email !== "" && password !== "") {
+      try {
+        const response = await axios.post(
+          "http://localhost:1234/accounts",
+          riquest
+        );
+        console.log(response);
+        console.log("added");
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       Swal.fire({
         position: "top-middle",
@@ -95,15 +61,18 @@ const Register = () => {
         <div className="row">
           <div className="col-md-6 offset-md-3">
             <div className="my-5">
-              <form className=" card-body-color p-lg-5" onSubmit={handleSubmit}>
+              <form
+                className=" card-body-color p-lg-5"
+                onSubmit={(e) => handleSubmit(e)}
+              >
                 <div className="mb-3 tgh">
                   <h3 className="text-center">REGISTER</h3>
                   <input
                     type="text"
                     className="form-control"
                     id="Username"
-                    value={formData.username}
-                    onChange={handleChange}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     placeholder="User Name"
                     name="username"
                   />
@@ -112,8 +81,8 @@ const Register = () => {
                   <input
                     type="email"
                     className="form-control"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     id="email"
                     name="email"
                     placeholder="email"
@@ -123,26 +92,14 @@ const Register = () => {
                   <input
                     type="password"
                     className="form-control"
-                    value={formData.password}
-                    onChange={handleChange}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     id="password"
                     name="password"
                     placeholder="password"
                   />
                 </div>
-                <div className="">
-                  <label htmlFor="role" className="form-label"></label>
-                  <select
-                    className="form-select"
-                    id="role"
-                    value={formData.role}
-                    onChange={handleChange}
-                    name="role"
-                  >
-                    <option value="supervisor">Supervisor</option>
-                    <option value="operator">Operator</option>
-                  </select>
-                </div>
+                <div className=""></div>
                 <br />
                 <div className="text-center">
                   <button
@@ -153,7 +110,7 @@ const Register = () => {
                   </button>
                 </div>
 
-                <div id="login" classNaBelumme="text-center mb-5 text-dark">
+                <div id="login" className="text-center mb-5 text-dark">
                   <span style={{ color: "white" }}>Punya Akun?</span>
                   <Link to="/login" className="text-dark fw-bold">
                     <span style={{ color: "white" }}>

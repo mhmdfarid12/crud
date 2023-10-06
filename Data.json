@@ -15,27 +15,6 @@
       "role": "operator"
     },
     {
-      "id": "3",
-      "username": "lutfi",
-      "email": "lutfi@gmail.com",
-      "password": "1234567",
-      "role": "operator"
-    },
-    {
-      "id": "4",
-      "username": "zimam",
-      "email": "zimam@gmail.com",
-      "password": "1234567",
-      "role": "operator"
-    },
-    {
-      "id": "5",
-      "username": "fikri",
-      "email": "fikri@gmail.com",
-      "password": "1234567",
-      "role": "operator"
-    },
-    {
       "id": "6",
       "username": "wahyu",
       "email": "wahyu@gmail.com",
@@ -46,13 +25,6 @@
       "id": "7",
       "username": "zakyy",
       "email": "zakyy@gmail.com",
-      "password": "1234567",
-      "role": "operator"
-    },
-    {
-      "id": "8",
-      "username": "izhar",
-      "email": "izhar@gmail.com",
       "password": "1234567",
       "role": "operator"
     },
@@ -134,20 +106,141 @@
       "role": "operator"
     },
     {
-      "id": "20",
       "username": "Novam",
       "email": "Novam@gmail.com",
       "password": "1234567",
-      "role": "operator"
+      "role": "operator",
+      "id": "20"
+    },
+    {
+      "id": "HyoYL7A"
+    },
+    {
+      "id": "T01XP31"
+    },
+    {
+      "id": "a9VJpKN"
+    },
+    {
+      "id": "cd6sLH4"
+    },
+    {
+      "id": "9RMg2OS"
+    },
+    {
+      "id": "rjkM12M"
+    },
+    {
+      "id": "1OoCy8J"
+    },
+    {
+      "id": "u2oLD0Z"
+    },
+    {
+      "id": "BQk-kkN"
+    },
+    {
+      "id": "_123c5K"
+    },
+    {
+      "id": "ZK-GFkw"
+    },
+    {
+      "id": "s0g9onQ"
+    },
+    {
+      "id": "KzoDAon"
+    },
+    {
+      "id": "tDS3_ic"
+    },
+    {
+      "id": "SoPt5he"
+    },
+    {
+      "id": "x6NI6IE"
+    },
+    {
+      "id": "lWGncu9"
+    },
+    {
+      "id": "mMY_ZLw"
+    },
+    {
+      "id": "mrpwzQ0"
+    },
+    {
+      "id": "rNDIr6H"
+    },
+    {
+      "id": "Uhsx6gu"
+    },
+    {
+      "id": "bXHcd5d"
+    },
+    {
+      "id": "2AejkOM"
+    },
+    {
+      "id": "dRcYFmL"
+    },
+    {
+      "id": "H6a7LeK"
+    },
+    {
+      "id": "CtwYM-C"
+    },
+    {
+      "id": "RYAcJEY"
+    },
+    {
+      "id": "MuCqbv7"
+    },
+    {
+      "id": "rUuPVKf"
+    },
+    {
+      "id": "6h29pq4"
+    },
+    {
+      "id": "TclLojq"
+    },
+    {
+      "id": "nGme4jm"
+    },
+    {
+      "id": "6IQHZIk"
+    },
+    {
+      "id": "HTgfdJc"
+    },
+    {
+      "id": "PFj39FU"
+    },
+    {
+      "id": "hhhi0E4"
+    },
+    {
+      "username": "mafa",
+      "email": "mafa@gmail.com",
+      "password": "1234566",
+      "role": "operator",
+      "id": "98efce0c"
+    },
+    {
+      "id": "10128440",
+      "username": "farid",
+      "email": "mf975100@gmail.com",
+      "password": "122",
+      "role": "supervisor"
     }
-  
   ],
   "customers": [
     {
-      "id": "1",
       "name": "Farid",
       "phone": "05657641472",
-      "payMethod": "Cash"
+      "payMethod": "Kredit",
+      "id": "1"
     },
     {
       "id": "2",
@@ -166,12 +259,6 @@
       "name": "Fahrian",
       "phone": "56787654356",
       "payMethod": "Debit"
-    },
-    {
-      "id": "5",
-      "name": "Arhan",
-      "phone": "0866746354746",
-      "payMethod": "Cash"
     },
     {
       "id": "6",
@@ -212,7 +299,7 @@
       "snack": true,
       "lunch": true,
       "extraTime": false,
-      " booking": "1 hari"
+      "booking": "1 hari"
     },
     {
       "id": "2",
@@ -221,7 +308,7 @@
       "snack": true,
       "lunch": false,
       "extraTime": true,
-      " booking": "2 hari"
+      "booking": "2 hari"
     },
     {
       "id": "3",
@@ -230,57 +317,43 @@
       "snack": false,
       "lunch": true,
       "extraTime": false,
-      " booking": "1 hari"
+      "booking": "1 hari"
     },
     {
-      "id": "4",
-      "rooms": "4",
-      "capacity": "single bad",
-      "snack": false,
-      "lunch": true,
-      "extraTime": false,
-      " booking": "1 hari"
-    },
-    {
-      "id": "5",
-      "rooms": "5",
-      "capacity": "double bad",
-      "snack": true,
-      "lunch": true,
-      "extraTime": true,
-      " booking": "1 hari"
+      "id": "7e360017",
+      "rooms": "2",
+      "capacity": "double bed",
+      "snack": "",
+      "lunch": "false",
+      "extraTime": "",
+      "booking": "2 hari"
     }
   ],
   "rooms": [
     {
-      "id": "1",
-      " noLantai": "1",
-      "  noKamar": "1"
-    },
-    {
-      "id": "2",
-      " noLantai": "1",
-      "  noKamar": "2"
-    },
-    {
-      "id": "3",
-      " noLantai": "1",
-      "  noKamar": "3"
-    },
-    {
       "id": "4",
-      " noLantai": "2",
-      "  noKamar": "1"
+      "noLantai": "2",
+      "noKamar": "1"
     },
     {
       "id": "5",
-      " noLantai": "2",
-      "  noKamar": "2"
+      "noLantai": "2",
+      "noKamar": "2"
     },
     {
       "id": "6",
-      " noLantai": "2",
-      "  noKamar": "3"
+      "noLantai": "2",
+      "noKamar": "3"
+    },
+    {
+      "noLantai": "1",
+      "noKamar": "3",
+      "id": "46d07562"
+    },
+    {
+      "id": "a7417db5",
+      "noLantai": "1",
+      "noKamar": "2"
     }
   ]
 }

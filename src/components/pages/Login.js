@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/Login.css"; // Impor file CSS
 import Swal from "sweetalert2";
-import Accounts from "../database/Accounts";
+
 import axios from "axios";
 
 const Login = () => {
@@ -13,24 +13,16 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const [accounts, setAccounts] = useState([
-    {
-      id: 0,
-      username: "yourname",
-      password: "k",
-      role: "supervisor,",
-    },
-  ]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post("http://localhost:1234/accounts");
+      const data = await axios.get("http://localhost:1234/accounts");
+      console.log(data);
 
       if (formData.username !== "" && formData.password !== "") {
         // const storedAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
-
-        const existingAccount = data.find(
+        const obj = data.data;
+        const existingAccount = obj.find(
           (account) =>
             account.username === formData.username &&
             account.password === formData.password
@@ -66,44 +58,6 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
-    }
-
-    if (formData.username !== "" && formData.password !== "") {
-      // const storedAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
-
-      const existingAccount = Accounts.find(
-        (account) =>
-          account.username === formData.username &&
-          account.password === formData.password
-      );
-
-      if (existingAccount) {
-        Swal.fire({
-          position: "top-middle",
-          icon: "success",
-          title: "Login Berhasil!!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        localStorage.setItem("UserRole", existingAccount.role);
-        navigate("/Home");
-      } else {
-        Swal.fire({
-          position: "top-middle",
-          icon: "error",
-          title: "Username atau password salah!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    } else {
-      Swal.fire({
-        position: "top-middle",
-        icon: "error",
-        title: "Tolong isi semua kolom!!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
     }
   };
 

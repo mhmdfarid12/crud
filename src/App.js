@@ -40,7 +40,7 @@ function App() {
           />
 
           <Route
-            path="/edit"
+            path="/edit/:id"
             element={
               <PrivateHome>
                 <Edit />
@@ -64,7 +64,7 @@ function App() {
             }
           />
           <Route
-            path="/editCustomers"
+            path="/editCustomers/:id"
             element={
               <PrivateHome>
                 <EditCustomers />
@@ -80,7 +80,7 @@ function App() {
             }
           />
           <Route
-            path="/editOrders"
+            path="/editOrders/:id"
             element={
               <PrivateHome>
                 <EditOrders />

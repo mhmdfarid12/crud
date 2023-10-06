@@ -3,8 +3,8 @@ import { Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { v4 as uuid } from "uuid";
-import { Link, useNavigate } from "react-router-dom";
-import Orders from "../database/Orders";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 function EditOrders() {
   const [rooms, setRooms] = useState("");
@@ -15,25 +15,32 @@ function EditOrders() {
   const [booking, setBooking] = useState("");
   const [id, setId] = useState("");
 
-  var index = Orders.map(function (e) {
-    return e.id;
-  }).indexOf(id);
+  let history = useNavigate();
+  const param = useParams();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let a = Orders[index];
-    a.rooms = rooms;
-    a.capacity = capacity;
-    a.snack = snack;
-    a.lunch = lunch;
-    a.extraTime = extraTime;
-    a.booking = booking;
-
+    const riquest = {
+      rooms: rooms,
+      capacity: capacity,
+      snack: snack,
+      lunch: lunch,
+      extraTime: extraTime,
+      booking: booking,
+    };
+    try {
+      const respons = await axios.put(
+        `http://localhost:1234/orders/${param.id}`,
+        riquest
+      );
+      console.log(respons.data);
+      console.log("updated");
+    } catch (error) {
+      console.log(error);
+    }
     history("/tableOrders");
   };
-
-  let history = useNavigate();
 
   useEffect(() => {
     setId(localStorage.getItem("id"));

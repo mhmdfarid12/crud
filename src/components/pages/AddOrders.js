@@ -3,10 +3,9 @@ import { Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { v4 as uuid } from "uuid";
+import axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
-import Customers from "../database/Customers";
-import Orders from "../database/Orders";
 
 function AddOrders() {
   const [rooms, setRooms] = useState("");
@@ -15,32 +14,30 @@ function AddOrders() {
   const [lunch, setLunch] = useState("");
   const [extraTime, setExtraTime] = useState("");
   const [booking, setBooking] = useState("");
-  const [id, setId] = useState("");
+
   let navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const ids = uuid();
     let uniqueId = ids.slice(0, 8);
-
-    let ruang = rooms,
-      kapasitas = capacity,
-      camilan = snack,
-      makanSiang = lunch,
-      waktuTambahan = extraTime,
-      pemesan = booking;
-    uniqueId = id;
-
-    Orders.push({
+    const riquest = {
       id: uniqueId,
-      rooms: ruang,
-      capacity: kapasitas,
-      snack: camilan,
-      lunch: makanSiang,
-      extraTime: waktuTambahan,
-      booking: pemesan,
-    });
+      rooms: rooms,
+      capacity: capacity,
+      snack: snack,
+      lunch: lunch,
+      extraTime: extraTime,
+      booking: booking,
+    };
+    try {
+      const respons = await axios.post("http://localhost:1234/orders", riquest);
+      console.log(respons);
+      console.log("added");
+    } catch (error) {
+      console.log(error);
+    }
 
     navigate("/tableOrders");
   };

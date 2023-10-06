@@ -3,9 +3,8 @@ import { Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { v4 as uuid } from "uuid";
-import { Link, useNavigate } from "react-router-dom";
-import Accounts from "../database/Accounts";
-import Rooms from "../database/Rooms";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 function Edit() {
   const userRole = localStorage.getItem("UserRole");
@@ -18,7 +17,7 @@ function Edit() {
   const [noKamar, setNokamar] = useState("");
 
   let history = useNavigate();
-
+  const param = useParams();
   useEffect(() => {
     setUsername(localStorage.getItem("username"));
     setEmail(localStorage.getItem("email"));
@@ -26,17 +25,25 @@ function Edit() {
     setId(localStorage.getItem("Id"));
   }, []);
 
-  var index = Accounts.map(function (e) {
-    return e.id;
-  }).indexOf(id);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let a = Accounts[index];
-    a.username = email;
-    a.email = email;
-    a.password = password;
+    const riquest = {
+      username: username,
+      email: email,
+      password: password,
+      role: "operator",
+    };
+    try {
+      const respons = await axios.put(
+        `http://localhost:1234/accounts/${param.id}`,
+        riquest
+      );
+      console.log(respons.data);
+      console.log("updated");
+    } catch (error) {
+      console.log(error);
+    }
     history("/Table");
   };
   //const super visor END
@@ -47,16 +54,23 @@ function Edit() {
     setNokamar(localStorage.getItem("noKamar"));
   }, []);
 
-  var index = Rooms.map(function (e) {
-    return e.id;
-  }).indexOf(id);
-
-  const Submit = (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
 
-    let a = Rooms[index];
-    a.noLantai = noLantai;
-    a.noKamar = noKamar;
+    const riquest = {
+      noLantai: noLantai,
+      noKamar: noKamar,
+    };
+    try {
+      const respons = await axios.put(
+        `http://localhost:1234/rooms/${param.id}`,
+        riquest
+      );
+      console.log(respons.data);
+      console.log("updated");
+    } catch (error) {
+      console.log(error);
+    }
 
     history("/Table");
   };
