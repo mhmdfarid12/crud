@@ -17,25 +17,13 @@ function TableOrders() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [recordsPerPage, setRecordsPerPage] = useState(5);
-  const [disabledItems, setDisabledItems] = useState({});
-
-  const handleEdit = (
-    id,
-    rooms,
-    capacity,
-    snack,
-    lunch,
-    extraTime,
-    booking
-  ) => {
-    localStorage.setItem("Id", id);
-    localStorage.setItem("rooms", rooms);
-    localStorage.setItem("capacity", capacity);
-    localStorage.setItem("snack", snack);
-    localStorage.setItem("lunch", lunch);
-    localStorage.setItem("extraTime", extraTime);
-    localStorage.setItem("booking", booking);
-  };
+  const [rooms, setRooms] = useState("");
+  const [capacity, setCapacity] = useState("");
+  const [snack, setSnack] = useState(false);
+  const [lunch, setLunch] = useState(false);
+  const [extraTime, setExtraTime] = useState("");
+  const [booking, setBoking] = useState(false);
+  const [approve, setApprove] = useState("");
 
   const handleDelete = async (id) => {
     try {
@@ -111,7 +99,7 @@ function TableOrders() {
     });
   };
 
-  const disableButton = (index) => {
+  const disableButton = () => {
     setDisabledItems((prev) => ({ ...prev, [index]: true }));
 
     Swal.fire({
@@ -241,8 +229,8 @@ function TableOrders() {
                       <td>
                         <button
                           style={{ background: "purple", borderRadius: "5px" }}
-                          disabled={disabledItems[index]}
-                          onClick={() => disableButton(index)}
+                          disabled={item.approve ? true : false}
+                          onClick={() => disableButton()}
                         >
                           Approve
                         </button>

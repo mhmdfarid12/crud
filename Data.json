@@ -112,114 +112,7 @@
       "role": "operator",
       "id": "20"
     },
-    {
-      "id": "HyoYL7A"
-    },
-    {
-      "id": "T01XP31"
-    },
-    {
-      "id": "a9VJpKN"
-    },
-    {
-      "id": "cd6sLH4"
-    },
-    {
-      "id": "9RMg2OS"
-    },
-    {
-      "id": "rjkM12M"
-    },
-    {
-      "id": "1OoCy8J"
-    },
-    {
-      "id": "u2oLD0Z"
-    },
-    {
-      "id": "BQk-kkN"
-    },
-    {
-      "id": "_123c5K"
-    },
-    {
-      "id": "ZK-GFkw"
-    },
-    {
-      "id": "s0g9onQ"
-    },
-    {
-      "id": "KzoDAon"
-    },
-    {
-      "id": "tDS3_ic"
-    },
-    {
-      "id": "SoPt5he"
-    },
-    {
-      "id": "x6NI6IE"
-    },
-    {
-      "id": "lWGncu9"
-    },
-    {
-      "id": "mMY_ZLw"
-    },
-    {
-      "id": "mrpwzQ0"
-    },
-    {
-      "id": "rNDIr6H"
-    },
-    {
-      "id": "Uhsx6gu"
-    },
-    {
-      "id": "bXHcd5d"
-    },
-    {
-      "id": "2AejkOM"
-    },
-    {
-      "id": "dRcYFmL"
-    },
-    {
-      "id": "H6a7LeK"
-    },
-    {
-      "id": "CtwYM-C"
-    },
-    {
-      "id": "RYAcJEY"
-    },
-    {
-      "id": "MuCqbv7"
-    },
-    {
-      "id": "rUuPVKf"
-    },
-    {
-      "id": "6h29pq4"
-    },
-    {
-      "id": "TclLojq"
-    },
-    {
-      "id": "nGme4jm"
-    },
-    {
-      "id": "6IQHZIk"
-    },
-    {
-      "id": "HTgfdJc"
-    },
-    {
-      "id": "PFj39FU"
-    },
-    {
-      "id": "hhhi0E4"
-    },
+  
     {
       "username": "mafa",
       "email": "mafa@gmail.com",
@@ -232,6 +125,13 @@
       "username": "farid",
       "email": "mf975100@gmail.com",
       "password": "122",
+      "role": "supervisor"
+    },
+    {
+      "id": "f43e69ab",
+      "username": "rahma",
+      "email": "rahma@gmail.com",
+      "password": "1234567",
       "role": "supervisor"
     }
   ],
@@ -299,7 +199,8 @@
       "snack": true,
       "lunch": true,
       "extraTime": false,
-      "booking": "1 hari"
+      "booking": "1 hari",
+      "approve": false
     },
     {
       "id": "2",
@@ -308,7 +209,8 @@
       "snack": true,
       "lunch": false,
       "extraTime": true,
-      "booking": "2 hari"
+      "booking": "2 hari",
+      "approve": false
     },
     {
       "id": "3",
@@ -317,16 +219,18 @@
       "snack": false,
       "lunch": true,
       "extraTime": false,
-      "booking": "1 hari"
+      "booking": "1 hari",
+      "approve": false
     },
     {
       "id": "7e360017",
       "rooms": "2",
       "capacity": "double bed",
-      "snack": "",
-      "lunch": "false",
-      "extraTime": "",
-      "booking": "2 hari"
+      "snack": true,
+      "lunch": false,
+      "extraTime": true,
+      "booking": "2 hari",
+      "approve": false
     }
   ],
   "rooms": [
