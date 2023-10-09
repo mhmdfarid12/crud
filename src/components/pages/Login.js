@@ -37,6 +37,7 @@ const Login = () => {
             timer: 1500,
           });
           localStorage.setItem("UserRole", existingAccount.role);
+          localStorage.setItem("id", existingAccount.id);
           navigate("/Home");
         } else {
           Swal.fire({

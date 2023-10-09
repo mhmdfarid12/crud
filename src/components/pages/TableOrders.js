@@ -99,9 +99,7 @@ function TableOrders() {
     });
   };
 
-  const disableButton = () => {
-    setDisabledItems((prev) => ({ ...prev, [index]: true }));
-
+  const handleSubmit = (e) => {
     Swal.fire({
       position: "top-middle",
       icon: "success",
@@ -109,6 +107,45 @@ function TableOrders() {
       showConfirmButton: false,
       timer: 1500,
     });
+    navigate("/home");
+  };
+
+  const disableButton = async (
+    e,
+    id,
+    rooms,
+    capacity,
+    snack,
+    lunch,
+    extraTime,
+    booking
+  ) => {
+    e.preventDefault();
+    const riquest = {
+      rooms: rooms,
+      capacity: capacity,
+      snack: snack,
+      lunch: lunch,
+      extraTime: extraTime,
+      booking: booking,
+      approve: true,
+    };
+    try {
+      const respons = await axios.put(
+        `http://localhost:1234/orders/${id}`,
+        riquest
+      );
+      console.log(respons.data);
+      Swal.fire({
+        position: "top-middle",
+        icon: "success",
+        title: "Approve berhasil!!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -161,6 +198,7 @@ function TableOrders() {
                       LOGOUT
                     </button>
                   </Nav>
+                  <Nav.Link href="/profile">PROFILE</Nav.Link>
                 </Navbar.Collapse>
               </Container>
             </Navbar>
@@ -227,13 +265,29 @@ function TableOrders() {
                       <td>{item.extraTime === true ? "ada" : "tidak ada"}</td>
                       <td>{item.booking}</td>
                       <td>
-                        <button
-                          style={{ background: "purple", borderRadius: "5px" }}
-                          disabled={item.approve ? true : false}
-                          onClick={() => disableButton()}
-                        >
-                          Approve
-                        </button>
+                        <form action="" onSubmit={handleSubmit}>
+                          <button
+                            style={{
+                              background: "purple",
+                              borderRadius: "5px",
+                            }}
+                            disabled={item.approve ? true : false}
+                            onClick={(e) =>
+                              disableButton(
+                                e,
+                                item.id,
+                                item.rooms,
+                                item.capacity,
+                                item.snack,
+                                item.lunch,
+                                item.extraTime,
+                                item.booking
+                              )
+                            }
+                          >
+                            Approve
+                          </button>
+                        </form>
                       </td>
                     </tr>
                   ))}
@@ -294,6 +348,7 @@ function TableOrders() {
                       LOGOUT
                     </button>
                   </Nav>
+                  <Nav.Link href="/profile">PROFILE</Nav.Link>
                 </Navbar.Collapse>
               </Container>
             </Navbar>
@@ -360,22 +415,7 @@ function TableOrders() {
                       <td>{item.booking}</td>
                       <td>
                         <Link to={`/editOrders/${item.id}`}>
-                          <Button
-                            style={{ background: "purple" }}
-                            onClick={() =>
-                              handleEdit(
-                                item.id,
-                                item.rooms,
-                                item.capacity,
-                                item.snack,
-                                item.lunch,
-                                item.extraTime,
-                                item.booking
-                              )
-                            }
-                          >
-                            EDIT
-                          </Button>
+                          <Button style={{ background: "purple" }}>EDIT</Button>
                         </Link>
                         &nbsp;
                         <Button

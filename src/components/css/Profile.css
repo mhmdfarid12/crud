@@ -1,0 +1,21 @@
+.baground{
+    background-color: purple;
+   
+    width: 30%;
+    height: 80%;
+    margin: auto;
+    border-radius: 20px;
+  }
+  .profil{
+border-radius: 50%;
+left: 50%;
+transform: translate(35%, -50%);
+
+  }
+  .kolom{
+    width: 300px;
+    height: 200px; /* Atur tinggi elemen sesuai kebutuhan Anda */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -40%);}

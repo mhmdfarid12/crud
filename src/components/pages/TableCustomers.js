@@ -147,6 +147,7 @@ function TableCustomers() {
                     LOGOUT
                   </button>
                 </Nav>
+                <Nav.Link href="/profile">PROFILE</Nav.Link>
               </Navbar.Collapse>
             </Container>
           </Navbar>

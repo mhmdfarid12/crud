@@ -14,6 +14,7 @@ import EditCustomers from "./components/pages/EditCustomers";
 import AddCustomers from "./components/pages/AddCustomers";
 import EditOrders from "./components/pages/EditOrders";
 import AddOrders from "./components/pages/AddOrders";
+import Profile from "./components/pages/Profil";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -92,6 +93,14 @@ function App() {
             element={
               <PrivateHome>
                 <AddOrders />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateHome>
+                <Profile />
               </PrivateHome>
             }
           />

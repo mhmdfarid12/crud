@@ -112,7 +112,6 @@
       "role": "operator",
       "id": "20"
     },
-  
     {
       "username": "mafa",
       "email": "mafa@gmail.com",
@@ -131,6 +130,27 @@
       "id": "f43e69ab",
       "username": "rahma",
       "email": "rahma@gmail.com",
+      "password": "1234567",
+      "role": "supervisor"
+    },
+    {
+      "id": "30cdb07d",
+      "username": "Muhammadfarid",
+      "email": "mhmdfard569@gmail.com",
+      "password": "1234567",
+      "role": "supervisor"
+    },
+    {
+      "id": "1c37526a",
+      "username": "Muhammadfarid",
+      "email": "mhmdfard569@gmail.com",
+      "password": "1234567",
+      "role": "supervisor"
+    },
+    {
+      "id": "a55d937d",
+      "username": "mhmdfaridhkymm",
+      "email": "mhmdfard569@gmail.com",
       "password": "1234567",
       "role": "supervisor"
     }
@@ -193,24 +213,24 @@
   ],
   "orders": [
     {
-      "id": "1",
       "rooms": "1",
       "capacity": "double bad",
       "snack": true,
       "lunch": true,
       "extraTime": false,
       "booking": "1 hari",
-      "approve": false
+      "approve": true,
+      "id": "1"
     },
     {
-      "id": "2",
       "rooms": "2",
       "capacity": "single bad",
       "snack": true,
       "lunch": false,
       "extraTime": true,
       "booking": "2 hari",
-      "approve": false
+      "approve": true,
+      "id": "2"
     },
     {
       "id": "3",

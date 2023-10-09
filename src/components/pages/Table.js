@@ -232,6 +232,7 @@ function Tabel() {
                       LOGOUT
                     </button>
                   </Nav>
+                  <Nav.Link href="/profile">PROFILE</Nav.Link>
                 </Navbar.Collapse>
               </Container>
             </Navbar>
@@ -390,6 +391,7 @@ function Tabel() {
                     <button onClick={logout} className="btn btn-danger">
                       LOGOUT
                     </button>
+                    <Nav.Link href="/profile">PROFILE</Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
               </Container>

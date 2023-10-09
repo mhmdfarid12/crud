@@ -34,7 +34,7 @@ function Add() {
 
     try {
       const respons = await axios.post(
-        "http://localhost:1234/accounts",
+        "http://localhost:1234/accounts/",
         riquest
       );
       console.log(respons);
