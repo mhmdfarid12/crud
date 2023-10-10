@@ -15,6 +15,9 @@ import AddCustomers from "./components/pages/AddCustomers";
 import EditOrders from "./components/pages/EditOrders";
 import AddOrders from "./components/pages/AddOrders";
 import Profile from "./components/pages/Profil";
+import ReportSewa from "./components/pages/ReportSewa";
+import AddReportSewa from "./components/pages/AddReportSewa";
+import EditReportSewa from "./components/pages/EditReportSewa";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -101,6 +104,30 @@ function App() {
             element={
               <PrivateHome>
                 <Profile />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/reportSewa"
+            element={
+              <PrivateHome>
+                <ReportSewa />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/addReportSewa"
+            element={
+              <PrivateHome>
+                <AddReportSewa />
+              </PrivateHome>
+            }
+          />
+          <Route
+            path="/editReportSewa/:id"
+            element={
+              <PrivateHome>
+                <EditReportSewa />
               </PrivateHome>
             }
           />

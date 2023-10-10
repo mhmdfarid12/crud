@@ -7,6 +7,7 @@ const Profil = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [username, setUsername] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState();
   const [role, setRole] = useState();
 
   const getAccounts = async () => {
@@ -18,15 +19,36 @@ const Profil = () => {
       setEmail(account.email);
       setUsername(account.username);
       setRole(account.role);
+      setAvatarUrl(account.avatarUrl);
       console.log(account);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const riquest = {
+      email: email,
+      username: username,
+      role: role,
+    };
+    try {
+      const respons = await axios.put(
+        `http://localhost:1234/accounts/${localStorage.getItem("id")}`,
+        riquest
+      );
+      const resData = respons.data;
+      setEmail(resData.email);
+      setUsername(resData.username);
+      setRole(resData.role);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     getAccounts();
-  }, [email, username, role]);
+  }, [email, username, role, avatarUrl]);
 
   const kembali = () => {
     navigate(-1);
@@ -48,6 +70,7 @@ const Profil = () => {
       >
         kembali
       </button>
+
       <br></br>
       <br></br>
       <br></br>
@@ -73,7 +96,11 @@ const Profil = () => {
                           width: "200px",
                           height: "200px",
                         }}
-                        src="https://divedigital.id/wp-content/uploads/2021/10/1-min.png"
+                        src={
+                          avatarUrl !== ""
+                            ? avatarUrl
+                            : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"
+                        }
                         class="img-circle profile-avatar"
                         alt="User avatar"
                       />
@@ -81,39 +108,97 @@ const Profil = () => {
                   </div>
                   <div class="kolom">
                     <div class="panel-heading">
-                      <h1 style={{ textAlign: "center" }} class="panel-title">
+                      <h1
+                        style={{
+                          textAlign: "center",
+                          transform: "translate(15%, -50%)",
+                        }}
+                        class="panel-title"
+                      >
                         MY PROFILE
                       </h1>
                     </div>
                     <div class="panel-body">
                       <div class="form-group">
-                        <label class="col-sm-2 control-label">USERNAME</label>
+                        <label
+                          class="col-sm-2 control-label"
+                          style={{
+                            transform: "translate(-200%, -50%)",
+                          }}
+                        >
+                          USERNAME:
+                        </label>
+                        <br></br>
                         <div class="col-sm-10">
                           <input
+                            style={{
+                              width: "400px",
+                              height: "60px",
+                              borderRadius: "20px",
+                            }}
                             value={username}
                             type="text"
                             class="form-control"
+                            onChange={(e) => setUsername(e.target.value)}
                           />
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-2 control-label">EMAIL</label>
+                        <label
+                          class="col-sm-2 control-label"
+                          style={{
+                            transform: "translate(-200%, -10%)",
+                          }}
+                        >
+                          EMAIL:
+                        </label>
                         <div class="col-sm-10">
                           <input
+                            style={{
+                              width: "400px",
+                              height: "60px",
+                              borderRadius: "20px",
+                            }}
                             value={email}
                             type="text"
                             class="form-control"
+                            onChange={(e) => setEmail(e.target.value)}
                           />
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-2 control-label">ROLE</label>
+                        <label
+                          class="col-sm-2 control-label"
+                          style={{
+                            transform: "translate(-200%, -10%)",
+                          }}
+                        >
+                          ROLE:
+                        </label>
                         <div class="col-sm-10">
                           <input
+                            style={{
+                              width: "400px",
+                              height: "60px",
+                              borderRadius: "20px",
+                            }}
                             value={role}
                             type="text"
                             class="form-control"
+                            onChange={(e) => setRole(e.target.value)}
                           />
+                          <button
+                            style={{
+                              transform: "translate(-100px, 20px)",
+                              borderRadius: "10px",
+                              height: "35px",
+                              width: "90px",
+                              transform: "translate(-65%, -0%)",
+                            }}
+                            onClick={handleSubmit}
+                          >
+                            EDIT
+                          </button>
                         </div>
                       </div>
                     </div>

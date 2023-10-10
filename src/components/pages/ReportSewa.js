@@ -10,9 +10,9 @@ import Container from "react-bootstrap/Container";
 
 import axios from "axios";
 
-function TableOrders() {
+function ReportSewa() {
   const userRole = localStorage.getItem("UserRole");
-  const [ordersList, setOrdersList] = useState([]);
+  const [reportList, setReport] = useState([]);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,14 +20,14 @@ function TableOrders() {
   const [rooms, setRooms] = useState("");
   const [capacity, setCapacity] = useState("");
   const [snack, setSnack] = useState(false);
-  const [lunch, setLunch] = useState(false);
+
   const [extraTime, setExtraTime] = useState("");
   const [booking, setBoking] = useState(false);
   const [approve, setApprove] = useState("");
 
   const handleDelete = async (id) => {
     try {
-      const respons = await axios.delete(`http://localhost:1234/orders/${id}`);
+      const respons = await axios.delete(`http://localhost:1234/report/${id}`);
       console.log(respons);
       console.log("deleted");
       getOrder();
@@ -48,21 +48,22 @@ function TableOrders() {
 
   const getOrder = async () => {
     try {
-      const response = await axios.get("http://localhost:1234/orders");
-      const allOrders = response.data;
-
-      const filteredOrders = allOrders.filter((order) =>
+      const response = await axios.get("http://localhost:1234/report");
+      const allReport = response.data;
+      console.log(allReport);
+      const filteredReport = allReport.filter((order) =>
         order.rooms?.toLowerCase().includes(searchTerm?.toLowerCase())
       );
-      setOrdersList(filteredOrders);
+      setReport(filteredReport);
+      console.log(filteredReport);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const records = ordersList.slice(firstIndex, lastIndex);
+  const records = reportList.slice(firstIndex, lastIndex);
 
-  const totalPages = Math.ceil(ordersList.length / recordsPerPage);
+  const totalPages = Math.ceil(reportList.length / recordsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   useEffect(() => {
@@ -112,26 +113,28 @@ function TableOrders() {
   const disableButton = async (
     e,
     id,
+    dateTime,
     rooms,
     capacity,
     snack,
-    lunch,
+
     extraTime,
     booking
   ) => {
     e.preventDefault();
     const riquest = {
+      dateTime: dateTime,
       rooms: rooms,
       capacity: capacity,
       snack: snack,
-      lunch: lunch,
+
       extraTime: extraTime,
       booking: booking,
       approve: true,
     };
     try {
       const respons = await axios.put(
-        `http://localhost:1234/orders/${id}`,
+        `http://localhost:1234/report/${id}`,
         riquest
       );
       console.log(respons.data);
@@ -243,11 +246,11 @@ function TableOrders() {
               <Table striped bordered hover size="sm">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Date Time</th>
                     <th>Rooms</th>
                     <th>Capacity</th>
                     <th>Snack</th>
-                    <th>Lunch</th>
+
                     <th>Extra Time</th>
                     <th>Booking</th>
                     <th>Actions</th>
@@ -256,11 +259,11 @@ function TableOrders() {
                 <tbody>
                   {records.map((item, index) => (
                     <tr key={index}>
-                      <td>{item.id}</td>
+                      <td>{item.dateTime}</td>
                       <td>{item.rooms}</td>
                       <td>{item.capacity}</td>
                       <td>{item.snack === true ? "ada" : "tidak ada"}</td>
-                      <td>{item.lunch === true ? "ada" : "tidak ada"}</td>
+
                       <td>{item.extraTime === true ? "ada" : "tidak ada"}</td>
                       <td>{item.booking}</td>
                       <td>
@@ -275,10 +278,11 @@ function TableOrders() {
                               disableButton(
                                 e,
                                 item.id,
+                                item.dateTime,
                                 item.rooms,
                                 item.capacity,
                                 item.snack,
-                                item.lunch,
+
                                 item.extraTime,
                                 item.booking
                               )
@@ -393,10 +397,11 @@ function TableOrders() {
               <Table striped bordered hover size="sm">
                 <thead>
                   <tr>
+                    <th>Date Time</th>
                     <th>Rooms</th>
                     <th>Capacity</th>
                     <th>Snack</th>
-                    <th>Lunch</th>
+
                     <th>Extra Time</th>
                     <th>Booking</th>
                     <th>Actions</th>
@@ -406,14 +411,15 @@ function TableOrders() {
                 <tbody>
                   {records.map((item, index) => (
                     <tr key={index}>
+                      <td>{item.dateTime}</td>
                       <td>{item.rooms}</td>
                       <td>{item.capacity}</td>
                       <td>{item.snack === true ? "ada" : "tidak ada"}</td>
-                      <td>{item.lunch === true ? "ada" : "tidak ada"}</td>
+
                       <td>{item.extraTime === true ? "ada" : "tidak ada"}</td>
                       <td>{item.booking}</td>
                       <td>
-                        <Link to={`/editOrders/${item.id}`}>
+                        <Link to={`/editReportSewa/${item.id}`}>
                           <Button style={{ background: "purple" }}>EDIT</Button>
                         </Link>
                         &nbsp;
@@ -443,7 +449,7 @@ function TableOrders() {
                 <Pagination.Next onClick={nextPage} />
               </Pagination>
               <br></br>
-              <Link className="d-grid gap-2" to="/addOrders">
+              <Link className="d-grid gap-2" to="/AddReportSewa">
                 <Button style={{ background: "purple" }} size="lg">
                   Create
                 </Button>
@@ -456,4 +462,4 @@ function TableOrders() {
   );
 }
 
-export default TableOrders;
+export default ReportSewa;

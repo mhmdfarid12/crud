@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { v4 as uuid } from "uuid";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function EditOrders() {
+function EditReportSewa() {
+  const [dateTime, setDateTime] = useState("");
   const [rooms, setRooms] = useState("");
   const [capacity, setCapacity] = useState("");
   const [snack, setSnack] = useState("");
-  const [lunch, setLunch] = useState("");
+
   const [extraTime, setExtraTime] = useState("");
   const [booking, setBooking] = useState("");
   const [id, setId] = useState("");
@@ -21,13 +20,14 @@ function EditOrders() {
   const getById = async () => {
     try {
       const respons = await axios.get(
-        `http://localhost:1234/orders/${param.id}`
+        `http://localhost:1234/report/${param.id}`
       );
       const resData = respons.data;
+      setDateTime(resData.dateTime);
       setRooms(resData.rooms);
       setCapacity(resData.capacity);
       setSnack(resData.snack);
-      setLunch(resData.lunch);
+
       setExtraTime(resData.extraTime);
       setBooking(resData.booking);
       console.log(resData);
@@ -40,37 +40,39 @@ function EditOrders() {
     e.preventDefault();
 
     const riquest = {
+      dateTime: dateTime,
       rooms: rooms,
       capacity: capacity,
       snack: snack,
-      lunch: lunch,
       extraTime: extraTime,
       booking: booking,
     };
     try {
       const respons = await axios.put(
-        `http://localhost:1234/orders/${param.id}`,
+        ` http://localhost:1234/report/${param.id}`,
         riquest
       );
       const resData = respons.data;
+      setDateTime(resData.dateTime);
       setRooms(resData.rooms);
       setCapacity(resData.capacity);
       setSnack(resData.snack);
-      setLunch(resData.lunch);
+
       setExtraTime(resData.extraTime);
       setBooking(resData.booking);
-
       console.log(respons.data);
+
       console.log("updated");
     } catch (error) {
       console.log(error);
     }
-    history("/tableOrders");
+    history("/reportSewa");
   };
 
   useEffect(() => {
     getById();
   }, []);
+
   //const super visor END
 
   return (
@@ -117,6 +119,15 @@ function EditOrders() {
                 onChange={(e) => setBooking(e.target.value)}
               />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="phone">
+              <Form.Control
+                type="text"
+                placeholder="dateTime"
+                value={dateTime}
+                required
+                onChange={(e) => setDateTime(e.target.value)}
+              />
+            </Form.Group>
             <label htmlFor="snack" style={{ color: "white" }}>
               SNACK
             </label>
@@ -127,21 +138,6 @@ function EditOrders() {
               id="snack"
               value={snack}
               onChange={(e) => setSnack(e.target.value)}
-            >
-              <option value="true">True</option>
-              <option value="false">false</option>
-            </select>
-
-            <label htmlFor="snack" style={{ color: "white" }}>
-              Lunch
-            </label>
-            <select
-              className=""
-              style={{ width: "300px", height: "40px", borderRadius: "5px" }}
-              name="lunch"
-              id="lunch"
-              value={lunch}
-              onChange={(e) => setLunch(e.target.value)}
             >
               <option value="true">True</option>
               <option value="false">false</option>
@@ -176,4 +172,4 @@ function EditOrders() {
   );
 }
 
-export default EditOrders;
+export default EditReportSewa;
