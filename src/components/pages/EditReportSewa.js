@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function EditReportSewa() {
+  const navigate = useNavigate();
   const [dateTime, setDateTime] = useState("");
   const [rooms, setRooms] = useState("");
   const [capacity, setCapacity] = useState("");
@@ -72,7 +73,9 @@ function EditReportSewa() {
   useEffect(() => {
     getById();
   }, []);
-
+  const kembali = () => {
+    navigate("/reportSewa");
+  };
   //const super visor END
 
   return (
@@ -91,7 +94,8 @@ function EditReportSewa() {
         }}
       >
         <div className="home">
-          <Form className="d-grid gap-2" style={{ width: "300px" }}>
+          <Form className="d-grid gap-2">
+            <h4>Edit Report sewa</h4>
             <Form.Group className="mb-3" controlId="name">
               <Form.Control
                 type="text"
@@ -159,12 +163,31 @@ function EditReportSewa() {
             </select>
             <br></br>
             <Button
-              style={{ background: "purple" }}
+              style={{
+                background: "purple",
+                width: "143px",
+                height: "40px",
+                borderRadius: "10px",
+                backgroundColor: "blue",
+              }}
               onClick={(e) => handleSubmit(e)}
               type="submit"
             >
               UPDATE
             </Button>
+            <button
+              onClick={kembali}
+              style={{
+                width: "143px",
+                height: "40px",
+                transform: "translate(110%, -120%)",
+                borderRadius: "10px",
+                backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              kembali
+            </button>
           </Form>
         </div>
       </div>

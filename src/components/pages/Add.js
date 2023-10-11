@@ -71,7 +71,9 @@ function Add() {
 
     navigate("/table");
   };
-
+  const kembali = () => {
+    navigate("/table");
+  };
   return (
     <div
       style={{
@@ -95,6 +97,7 @@ function Add() {
             onSubmit={handleSubmit} // Menambahkan event handler untuk form submission
           >
             <Form.Group className="mb-3" controlId="forUsername">
+              <h4>Add Tabel</h4>
               <Form.Control
                 type="text"
                 placeholder="Username"
@@ -121,9 +124,31 @@ function Add() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
-            <Button style={{ background: "purple" }} type="submit">
+            <Button
+              style={{
+                background: "purple",
+                width: "100px",
+                height: "40px",
+                borderRadius: "10px",
+                backgroundColor: "blue",
+              }}
+              type="submit"
+            >
               Submit
             </Button>
+            <button
+              onClick={kembali}
+              style={{
+                width: "100px",
+                height: "40px",
+                transform: "translate(110%, -120%)",
+                borderRadius: "10px",
+                backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              kembali
+            </button>
           </Form>
         ) : (
           //tabel super visor END
@@ -136,6 +161,7 @@ function Add() {
             onSubmit={handelSubmit} // Menambahkan event handler untuk form submission
           >
             <Form.Group className="mb-3" controlId="forUsername">
+              <h4>Add Tabel</h4>
               <Form.Control
                 type="text"
                 placeholder="Nomer lantai"
@@ -154,9 +180,31 @@ function Add() {
               />
             </Form.Group>
 
-            <Button style={{ background: "purple" }} type="submit">
+            <Button
+              style={{
+                background: "purple",
+                width: "100px",
+                height: "40px",
+                borderRadius: "10px",
+                backgroundColor: "blue",
+              }}
+              type="submit"
+            >
               Submit
             </Button>
+            <button
+              onClick={kembali}
+              style={{
+                width: "100px",
+                height: "40px",
+                transform: "translate(110%, -120%)",
+                borderRadius: "10px",
+                backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              kembali
+            </button>
           </Form>
 
           //tabel operator END

@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function EditCustomers() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [payMethod, setPayMethod] = useState("");
@@ -35,6 +36,10 @@ function EditCustomers() {
     history("/tableCustomers");
   };
 
+  const kembali = () => {
+    navigate("/tableCustomers");
+  };
+
   useEffect(() => {
     setName(localStorage.getItem("name"));
     setPhone(localStorage.getItem("phone"));
@@ -60,6 +65,7 @@ function EditCustomers() {
         }}
       >
         <div className="home">
+          <h4>Edit Customers</h4>
           <Form className="d-grid gap-2" style={{ width: "300px" }}>
             <Form.Group className="mb-3" controlId="name">
               <Form.Control
@@ -95,14 +101,33 @@ function EditCustomers() {
                 <option value="Debit">Debit</option>
               </select>
             </label>
-            <br></br>
+
             <Button
-              style={{ background: "purple" }}
+              style={{
+                background: "purple",
+                width: "143px",
+                height: "40px",
+                borderRadius: "10px",
+                backgroundColor: "blue",
+              }}
               onClick={(e) => handleSubmit(e)}
               type="submit"
             >
               UPDATE
             </Button>
+            <button
+              onClick={kembali}
+              style={{
+                width: "143px",
+                height: "40px",
+                transform: "translate(110%, -120%)",
+                borderRadius: "10px",
+                backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              kembali
+            </button>
           </Form>
         </div>
       </div>

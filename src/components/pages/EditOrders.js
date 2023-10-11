@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function EditOrders() {
+  const navigate = useNavigate();
   const [rooms, setRooms] = useState("");
   const [capacity, setCapacity] = useState("");
   const [snack, setSnack] = useState("");
@@ -68,6 +69,10 @@ function EditOrders() {
     history("/tableOrders");
   };
 
+  const kembali = () => {
+    navigate("/tableOrders");
+  };
+
   useEffect(() => {
     getById();
   }, []);
@@ -89,6 +94,7 @@ function EditOrders() {
         }}
       >
         <div className="home">
+          <h4>Edit Order</h4>
           <Form className="d-grid gap-2" style={{ width: "300px" }}>
             <Form.Group className="mb-3" controlId="name">
               <Form.Control
@@ -163,12 +169,31 @@ function EditOrders() {
             </select>
             <br></br>
             <Button
-              style={{ background: "purple" }}
+              style={{
+                background: "purple",
+                width: "143px",
+                height: "40px",
+                borderRadius: "10px",
+                backgroundColor: "blue",
+              }}
               onClick={(e) => handleSubmit(e)}
               type="submit"
             >
               UPDATE
             </Button>
+            <button
+              onClick={kembali}
+              style={{
+                width: "143px",
+                height: "40px",
+                transform: "translate(110%, -120%)",
+                borderRadius: "10px",
+                backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              kembali
+            </button>
           </Form>
         </div>
       </div>

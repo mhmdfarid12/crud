@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function Edit() {
+  const navigate = useNavigate();
   const userRole = localStorage.getItem("UserRole");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -74,7 +75,9 @@ function Edit() {
 
     history("/Table");
   };
-
+  const kembali = () => {
+    navigate("/Table");
+  };
   return (
     <div>
       <div
@@ -94,6 +97,7 @@ function Edit() {
         <div className="home">
           {userRole === "supervisor" ? (
             <Form className="d-grid gap-2" style={{ width: "300px" }}>
+              <h4>Edit Tabel</h4>
               <Form.Group className="mb-3" controlId="forName">
                 <Form.Control
                   type="text"
@@ -122,17 +126,37 @@ function Edit() {
                 />
               </Form.Group>
               <Button
-                style={{ background: "purple" }}
+                style={{
+                  background: "purple",
+                  width: "143px",
+                  height: "40px",
+                  borderRadius: "10px",
+                  backgroundColor: "blue",
+                }}
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
               >
                 UPDATE
               </Button>
+              <button
+                onClick={kembali}
+                style={{
+                  width: "143px",
+                  height: "40px",
+                  transform: "translate(110%, -120%)",
+                  borderRadius: "10px",
+                  backgroundColor: "red",
+                  color: "white",
+                }}
+              >
+                kembali
+              </button>
             </Form>
           ) : (
             //edit super visor END
             //edit operator START
             <Form className="d-grid gap-2" style={{ width: "300px" }}>
+              <h4>Edit Tabel</h4>
               <Form.Group className="mb-3" controlId="forName">
                 <Form.Control
                   type="text"
@@ -153,12 +177,31 @@ function Edit() {
               </Form.Group>
 
               <Button
-                style={{ background: "purple" }}
+                style={{
+                  background: "purple",
+                  width: "143px",
+                  height: "40px",
+                  borderRadius: "10px",
+                  backgroundColor: "blue",
+                }}
                 onClick={(e) => Submit(e)}
                 type="submit"
               >
                 UPDATE
               </Button>
+              <button
+                onClick={kembali}
+                style={{
+                  width: "143px",
+                  height: "40px",
+                  transform: "translate(110%, -120%)",
+                  borderRadius: "10px",
+                  backgroundColor: "red",
+                  color: "white",
+                }}
+              >
+                kembali
+              </button>
             </Form>
             //edit operator END
           )}

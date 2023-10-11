@@ -1,6 +1,8 @@
 import "../css/Profile.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 import React, { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Profil = () => {
@@ -9,6 +11,11 @@ const Profil = () => {
   const [username, setUsername] = useState("");
   const [avatarUrl, setAvatarUrl] = useState();
   const [role, setRole] = useState();
+
+  const [Email, setEMAIL] = useState();
+  const [Username, setUSERNAME] = useState("");
+  const [AvatarUrl, setAVATARURL] = useState();
+  const [Password, setPassword] = useState();
 
   const getAccounts = async () => {
     try {
@@ -20,38 +27,61 @@ const Profil = () => {
       setUsername(account.username);
       setRole(account.role);
       setAvatarUrl(account.avatarUrl);
+      setPassword(account.Password);
       console.log(account);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const riquest = {
-      email: email,
-      username: username,
+      email: Email,
+      username: Username,
+      avatarUrl: AvatarUrl,
       role: role,
+      Password: Password,
     };
     try {
       const respons = await axios.put(
         `http://localhost:1234/accounts/${localStorage.getItem("id")}`,
         riquest
       );
-      const resData = respons.data;
-      setEmail(resData.email);
-      setUsername(resData.username);
-      setRole(resData.role);
-    } catch (error) {}
+      console.log(respons);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getAccounts();
+    setAVATARURL(avatarUrl);
+    setUSERNAME(username);
+    setEMAIL(email);
   }, [email, username, role, avatarUrl]);
 
   const kembali = () => {
     navigate(-1);
+  };
+
+  const Logout = () => {
+    navigate("/login");
+
+    Swal.fire({
+      position: "top-middle",
+      icon: "success",
+      title: "LOGOUT Berhasil!!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
@@ -66,11 +96,17 @@ const Profil = () => {
     >
       <button
         onClick={kembali}
-        style={{ transform: "translate(-710px, 20px)" }}
+        style={{
+          transform: "translate(-755px, 10px)",
+
+          height: "40px",
+          borderRadius: "10px",
+          backgroundColor: "red",
+          color: "white",
+        }}
       >
         kembali
       </button>
-
       <br></br>
       <br></br>
       <br></br>
@@ -81,12 +117,12 @@ const Profil = () => {
             rel="stylesheet"
           />
           <br></br>
-          <div class="container bootstrap snippets bootdeys">
-            <div class="row">
-              <div class="col-xs-12 col-sm-9">
-                <form class="form-horizontal">
-                  <div class="panel panel-default">
-                    <div class="profil">
+          <div className="container bootstrap snippets bootdeys">
+            <div className="row">
+              <div className="col-xs-12 col-sm-9">
+                <form className="form-horizontal">
+                  <div className="panel panel-default">
+                    <div className="profil">
                       <br></br>
                       <img
                         style={{
@@ -101,27 +137,27 @@ const Profil = () => {
                             ? avatarUrl
                             : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"
                         }
-                        class="img-circle profile-avatar"
+                        className="img-circle profile-avatar"
                         alt="User avatar"
                       />
                     </div>
                   </div>
-                  <div class="kolom">
-                    <div class="panel-heading">
+                  <div className="kolom">
+                    <div className="panel-heading">
                       <h1
                         style={{
                           textAlign: "center",
                           transform: "translate(15%, -50%)",
                         }}
-                        class="panel-title"
+                        className="panel-title"
                       >
                         MY PROFILE
                       </h1>
                     </div>
-                    <div class="panel-body">
-                      <div class="form-group">
+                    <div className="panel-body">
+                      <div className="form-group">
                         <label
-                          class="col-sm-2 control-label"
+                          className="col-sm-2 control-label"
                           style={{
                             transform: "translate(-200%, -50%)",
                           }}
@@ -129,7 +165,7 @@ const Profil = () => {
                           USERNAME:
                         </label>
                         <br></br>
-                        <div class="col-sm-10">
+                        <div className="col-sm-10">
                           <input
                             style={{
                               width: "400px",
@@ -138,21 +174,21 @@ const Profil = () => {
                             }}
                             value={username}
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             onChange={(e) => setUsername(e.target.value)}
                           />
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <label
-                          class="col-sm-2 control-label"
+                          className="col-sm-2 control-label"
                           style={{
                             transform: "translate(-200%, -10%)",
                           }}
                         >
                           EMAIL:
                         </label>
-                        <div class="col-sm-10">
+                        <div className="col-sm-10">
                           <input
                             style={{
                               width: "400px",
@@ -161,21 +197,21 @@ const Profil = () => {
                             }}
                             value={email}
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             onChange={(e) => setEmail(e.target.value)}
                           />
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <label
-                          class="col-sm-2 control-label"
+                          className="col-sm-2 control-label"
                           style={{
                             transform: "translate(-200%, -10%)",
                           }}
                         >
                           ROLE:
                         </label>
-                        <div class="col-sm-10">
+                        <div className="col-sm-10">
                           <input
                             style={{
                               width: "400px",
@@ -184,21 +220,125 @@ const Profil = () => {
                             }}
                             value={role}
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             onChange={(e) => setRole(e.target.value)}
                           />
-                          <button
+                          <br></br>
+
+                          <Button
                             style={{
-                              transform: "translate(-100px, 20px)",
                               borderRadius: "10px",
-                              height: "35px",
-                              width: "90px",
-                              transform: "translate(-65%, -0%)",
+                              height: "40px",
+                              transform: "translate(-100%, -50%)",
                             }}
-                            onClick={handleSubmit}
+                            variant="primary"
+                            onClick={handleShow}
                           >
                             EDIT
+                          </Button>
+                          <button
+                            onClick={Logout}
+                            style={{
+                              transform: "translate(-65%, -50%)",
+                              height: "40px",
+                              borderRadius: "10px",
+                              backgroundColor: "red",
+                              color: "white",
+                            }}
+                          >
+                            LOGOUT
                           </button>
+
+                          <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                              <Modal.Title>Modal heading</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <div className="form-group">
+                                <label className=" control-label">IMAGE:</label>
+                                <div className="col-sm-10">
+                                  <input
+                                    style={{
+                                      width: "400px",
+                                      height: "60px",
+                                      borderRadius: "20px",
+                                    }}
+                                    value={AvatarUrl}
+                                    type="text"
+                                    className="form-control"
+                                    onChange={(e) =>
+                                      setAVATARURL(e.target.value)
+                                    }
+                                  />
+                                </div>
+                              </div>
+                            </Modal.Body>
+                            <Modal.Body>
+                              <div className="form-group">
+                                <label className="col-sm-2 control-label">
+                                  USERNAME:
+                                </label>
+                                <br></br>
+                                <div className="col-sm-10">
+                                  <input
+                                    style={{
+                                      width: "400px",
+                                      height: "60px",
+                                      borderRadius: "20px",
+                                    }}
+                                    value={Username}
+                                    type="text"
+                                    className="form-control"
+                                    onChange={(e) =>
+                                      setUSERNAME(e.target.value)
+                                    }
+                                  />
+                                </div>
+                              </div>
+                            </Modal.Body>
+                            <Modal.Body>
+                              <div className="form-group">
+                                <label className="col-sm-2 control-label">
+                                  EMAIL:
+                                </label>
+                                <div className="col-sm-10">
+                                  <input
+                                    style={{
+                                      width: "400px",
+                                      height: "60px",
+                                      borderRadius: "20px",
+                                    }}
+                                    value={Email}
+                                    type="text"
+                                    className="form-control"
+                                    onChange={(e) => setEMAIL(e.target.value)}
+                                  />
+                                </div>
+                              </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button
+                                style={{
+                                  background: "purple",
+                                  borderRadius: "10px",
+                                }}
+                                variant="secondary"
+                                onClick={handleClose}
+                              >
+                                Close
+                              </Button>
+                              <Button
+                                style={{
+                                  background: "purple",
+                                  borderRadius: "10px",
+                                }}
+                                variant="primary"
+                                onClick={(e) => handleSubmit(e)}
+                              >
+                                Save Changes
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
                         </div>
                       </div>
                     </div>

@@ -178,7 +178,9 @@ function ReportSewa() {
                     <Nav.Link href="/home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
                     <Nav.Link href="/table">Table</Nav.Link>
-                    <Nav.Link href="/tableOrders">Table orders</Nav.Link>
+                    <Nav.Link href="/TableOrders">Table orders</Nav.Link>
+                    <Nav.Link href="/TableCustomers">Table Customers</Nav.Link>
+                    <Nav.Link href="/reportSewa">Report Sewa</Nav.Link>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                       <NavDropdown.Item href="#action/3.1">
                         Action
@@ -329,7 +331,9 @@ function ReportSewa() {
                     <Nav.Link href="/home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
                     <Nav.Link href="/table">Table</Nav.Link>
-                    <Nav.Link href="/tableOrders">Table orders</Nav.Link>
+                    <Nav.Link href="/TableOrders">Table orders</Nav.Link>
+                    <Nav.Link href="/TableCustomers">Table Customers</Nav.Link>
+                    <Nav.Link href="/reportSewa">Report Sewa</Nav.Link>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                       <NavDropdown.Item href="#action/3.1">
                         Action

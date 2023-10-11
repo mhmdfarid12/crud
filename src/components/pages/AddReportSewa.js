@@ -46,7 +46,9 @@ function AddReportSewa() {
 
     navigate("/reportSewa");
   };
-
+  const kembali = () => {
+    navigate("/reportSewa");
+  };
   return (
     <div
       style={{
@@ -68,6 +70,7 @@ function AddReportSewa() {
           onSubmit={handleSubmit} // Menambahkan event handler untuk form submission
         >
           <Form.Group className="mb-3" controlId="forRooms">
+            <h4>Add Report Sewa</h4>
             <Form.Control
               type="text"
               placeholder="rooms"
@@ -135,12 +138,30 @@ function AddReportSewa() {
           </select>
           <br></br>
           <Button
-            style={{ background: "purple" }}
-            onClick={(e) => handleSubmit(e)}
+            style={{
+              background: "purple",
+              width: "143px",
+              height: "40px",
+              borderRadius: "10px",
+              backgroundColor: "blue",
+            }}
             type="submit"
           >
             CREATE
           </Button>
+          <button
+            onClick={kembali}
+            style={{
+              width: "143px",
+              height: "40px",
+              transform: "translate(110%, -120%)",
+              borderRadius: "10px",
+              backgroundColor: "red",
+              color: "white",
+            }}
+          >
+            kembali
+          </button>
         </Form>
       </div>
     </div>

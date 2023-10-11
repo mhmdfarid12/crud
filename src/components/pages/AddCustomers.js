@@ -39,7 +39,9 @@ function AddCustomers() {
 
     navigate("/tableCustomers");
   };
-
+  const kembali = () => {
+    navigate("/tableCustomers");
+  };
   return (
     <div
       style={{
@@ -61,6 +63,7 @@ function AddCustomers() {
           onSubmit={handleSubmit} // Menambahkan event handler untuk form submission
         >
           <Form.Group className="mb-3" controlId="forUsername">
+            <h4>Add Customers</h4>
             <Form.Control
               type="text"
               placeholder="name"
@@ -94,12 +97,31 @@ function AddCustomers() {
           </label>
           <br></br>
           <Button
-            style={{ background: "purple" }}
+            style={{
+              background: "purple",
+              width: "143px",
+              height: "40px",
+              borderRadius: "10px",
+              backgroundColor: "blue",
+            }}
             onClick={(e) => handleSubmit(e)}
             type="submit"
           >
             CREATE
           </Button>
+          <button
+            onClick={kembali}
+            style={{
+              width: "143px",
+              height: "40px",
+              transform: "translate(110%, -120%)",
+              borderRadius: "10px",
+              backgroundColor: "red",
+              color: "white",
+            }}
+          >
+            kembali
+          </button>
         </Form>
       </div>
     </div>
