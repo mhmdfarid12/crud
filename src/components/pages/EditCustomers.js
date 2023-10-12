@@ -54,7 +54,7 @@ function EditCustomers() {
       <div
         style={{
           backgroundImage:
-            "url(https://www.gotravelly.com/blog/wp-content/uploads/2019/10/Gunung-Fuji-Jepang-1024x640.jpg)",
+            "url(https://img.freepik.com/free-vector/paper-style-white-monochrome-background_23-2149000982.jpg?w=826&t=st=1697102479~exp=1697103079~hmac=1c79075f3069e702f954e9de0789b464a3dc62c98b37d0c76da2f4b9f244d670)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -65,70 +65,87 @@ function EditCustomers() {
         }}
       >
         <div className="home">
-          <h4>Edit Customers</h4>
-          <Form className="d-grid gap-2" style={{ width: "300px" }}>
-            <Form.Group className="mb-3" controlId="name">
-              <Form.Control
-                type="text"
-                placeholder="name"
-                value={name}
-                required
-                onChange={(e) => setName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="phone">
-              <Form.Control
-                type="text"
-                placeholder="Phone"
-                value={phone}
-                required
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </Form.Group>
-            <label htmlFor="payMethod">
-              <div>payMethod:</div>
-              <select
-                className=""
-                style={{ width: "300px", height: "40px", borderRadius: "5px" }}
-                h
-                name="payMethod"
-                id="payMethod"
-                value={payMethod}
-                onChange={(e) => setPayMethod(e.target.value)}
+          <div
+            className="home"
+            style={{
+              // backgroundColor: "grey",
+              border: "1px solid black",
+              backgroundColor: " grey",
+              width: "345px",
+              height: "350px",
+              padding: "20px",
+              borderRadius: "10px",
+            }}
+          >
+            <h4>Edit Customers</h4>
+            <Form className="d-grid gap-2" style={{ width: "300px" }}>
+              <Form.Group className="mb-3" controlId="name">
+                <Form.Control
+                  type="text"
+                  placeholder="name"
+                  value={name}
+                  required
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="phone">
+                <Form.Control
+                  type="text"
+                  placeholder="Phone"
+                  value={phone}
+                  required
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </Form.Group>
+              <label htmlFor="payMethod">
+                <div>payMethod:</div>
+                <select
+                  className=""
+                  style={{
+                    width: "300px",
+                    height: "40px",
+                    borderRadius: "5px",
+                  }}
+                  h
+                  name="payMethod"
+                  id="payMethod"
+                  value={payMethod}
+                  onChange={(e) => setPayMethod(e.target.value)}
+                >
+                  <option value="Cash">Cash</option>
+                  <option value="Kredit">Kredit</option>
+                  <option value="Debit">Debit</option>
+                </select>
+              </label>
+              <br></br>
+              <Button
+                style={{
+                  background: "grey",
+                  width: "143px",
+                  height: "40px",
+                  borderRadius: "10px",
+                  backgroundColor: "blue",
+                }}
+                onClick={(e) => handleSubmit(e)}
+                type="submit"
               >
-                <option value="Cash">Cash</option>
-                <option value="Kredit">Kredit</option>
-                <option value="Debit">Debit</option>
-              </select>
-            </label>
-
-            <Button
-              style={{
-                background: "purple",
-                width: "143px",
-                height: "40px",
-                borderRadius: "10px",
-                backgroundColor: "blue",
-              }}
-              onClick={(e) => handleSubmit(e)}
-              type="submit"
-            >
-              UPDATE
-            </Button>
-            <button
-              onClick={kembali}
-              style={{
-                width: "143px",
-                height: "40px",
-                transform: "translate(110%, -120%)",
-                borderRadius: "10px",
-                backgroundColor: "red",
-                color: "white",
-              }}
-            >
-              kembali
-            </button>
-          </Form>
+                UPDATE
+              </Button>
+              <button
+                onClick={kembali}
+                style={{
+                  width: "143px",
+                  height: "40px",
+                  transform: "translate(110%, -120%)",
+                  borderRadius: "10px",
+                  backgroundColor: "red",
+                  color: "white",
+                }}
+              >
+                kembali
+              </button>
+            </Form>
+          </div>
         </div>
       </div>
     </div>

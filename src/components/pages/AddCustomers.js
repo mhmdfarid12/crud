@@ -46,7 +46,7 @@ function AddCustomers() {
     <div
       style={{
         backgroundImage:
-          "url(https://www.gotravelly.com/blog/wp-content/uploads/2019/10/Gunung-Fuji-Jepang-1024x640.jpg)",
+          "url(https://img.freepik.com/free-vector/paper-style-white-monochrome-background_23-2149000982.jpg?w=826&t=st=1697102479~exp=1697103079~hmac=1c79075f3069e702f954e9de0789b464a3dc62c98b37d0c76da2f4b9f244d670)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -62,66 +62,82 @@ function AddCustomers() {
           style={{ margin: "15rem" }}
           onSubmit={handleSubmit} // Menambahkan event handler untuk form submission
         >
-          <Form.Group className="mb-3" controlId="forUsername">
-            <h4>Add Customers</h4>
-            <Form.Control
-              type="text"
-              placeholder="name"
-              required
-              value={name} // Menambahkan value agar input terkait dengan state
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="forEmail">
-            <Form.Control
-              type="number" // Mengubah tipe input ke 'email'
-              placeholder="phone"
-              required
-              value={phone} // Menambahkan value agar input terkait dengan state
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </Form.Group>
-          <label htmlFor="payMethod">
-            <select
-              className=""
-              style={{ width: "300px", height: "40px", borderRadius: "5px" }}
-              name="payMethod"
-              id="payMethod"
-              value={payMethod}
-              onChange={(e) => setPayMethod(e.target.value)}
+          <div
+            className="home"
+            style={{
+              // backgroundColor: "grey",
+              border: "1px solid black",
+              backgroundColor: " grey",
+              width: "345px",
+              height: "300px",
+              padding: "20px",
+              borderRadius: "10px",
+            }}
+          >
+            <Form.Group className="mb-3" controlId="forUsername">
+              <h4>Add Customers</h4>
+              <Form.Control
+                type="text"
+                placeholder="name"
+                required
+                value={name} // Menambahkan value agar input terkait dengan state
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="forEmail">
+              <Form.Control
+                type="number" // Mengubah tipe input ke 'email'
+                placeholder="phone"
+                required
+                value={phone} // Menambahkan value agar input terkait dengan state
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </Form.Group>
+            <label htmlFor="payMethod">
+              <select
+                className=""
+                style={{ width: "300px", height: "40px", borderRadius: "5px" }}
+                name="payMethod"
+                id="payMethod"
+                value={payMethod}
+                onChange={(e) => setPayMethod(e.target.value)}
+              >
+                <option value="Cash">Cash</option>
+                <option value="Kredit">Kredit</option>
+                <option value="Debit">Debit</option>
+              </select>
+            </label>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Button
+              style={{
+                background: "grey",
+                width: "143px",
+                height: "40px",
+                borderRadius: "10px",
+                backgroundColor: "blue",
+                transform: "translate(-5%, -30%)",
+              }}
+              onClick={(e) => handleSubmit(e)}
+              type="submit"
             >
-              <option value="Cash">Cash</option>
-              <option value="Kredit">Kredit</option>
-              <option value="Debit">Debit</option>
-            </select>
-          </label>
-          <br></br>
-          <Button
-            style={{
-              background: "purple",
-              width: "143px",
-              height: "40px",
-              borderRadius: "10px",
-              backgroundColor: "blue",
-            }}
-            onClick={(e) => handleSubmit(e)}
-            type="submit"
-          >
-            CREATE
-          </Button>
-          <button
-            onClick={kembali}
-            style={{
-              width: "143px",
-              height: "40px",
-              transform: "translate(110%, -120%)",
-              borderRadius: "10px",
-              backgroundColor: "red",
-              color: "white",
-            }}
-          >
-            kembali
-          </button>
+              CREATE
+            </Button>
+            <button
+              onClick={kembali}
+              style={{
+                width: "143px",
+                height: "40px",
+                transform: "translate(5%, -30%)",
+                borderRadius: "10px",
+                backgroundColor: "red",
+                color: "white",
+              }}
+            >
+              kembali
+            </button>
+          </div>
         </Form>
       </div>
     </div>

@@ -78,7 +78,7 @@ function Add() {
     <div
       style={{
         backgroundImage:
-          "url(https://www.gotravelly.com/blog/wp-content/uploads/2019/10/Gunung-Fuji-Jepang-1024x640.jpg)",
+          "url(https://img.freepik.com/free-vector/paper-style-white-monochrome-background_23-2149000982.jpg?w=826&t=st=1697102479~exp=1697103079~hmac=1c79075f3069e702f954e9de0789b464a3dc62c98b37d0c76da2f4b9f244d670)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -91,64 +91,79 @@ function Add() {
       <div className="home">
         {userRole === "supervisor" ? (
           //tabel super visor start
+
           <Form
             className="d-grid gap-2"
             style={{ margin: "15rem" }}
             onSubmit={handleSubmit} // Menambahkan event handler untuk form submission
           >
-            <Form.Group className="mb-3" controlId="forUsername">
-              <h4>Add Tabel</h4>
-              <Form.Control
-                type="text"
-                placeholder="Username"
-                required
-                value={username} // Menambahkan value agar input terkait dengan state
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="forEmail">
-              <Form.Control
-                type="email" // Mengubah tipe input ke 'email'
-                placeholder="Email"
-                required
-                value={email} // Menambahkan value agar input terkait dengan state
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="forPassword">
-              <Form.Control
-                type="password" // Mengubah tipe input ke 'password'
-                placeholder="Password"
-                required
-                value={password} // Menambahkan value agar input terkait dengan state
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Button
+            <div
+              className="home"
               style={{
-                background: "purple",
-                width: "100px",
-                height: "40px",
+                // backgroundColor: "grey",
+                border: "1px solid black",
+                backgroundColor: " grey",
+                width: "345px",
+                height: "350px",
+                padding: "20px",
                 borderRadius: "10px",
-                backgroundColor: "blue",
-              }}
-              type="submit"
-            >
-              Submit
-            </Button>
-            <button
-              onClick={kembali}
-              style={{
-                width: "100px",
-                height: "40px",
-                transform: "translate(110%, -120%)",
-                borderRadius: "10px",
-                backgroundColor: "red",
-                color: "white",
               }}
             >
-              kembali
-            </button>
+              <Form.Group className="mb-3" controlId="forUsername">
+                <h4>Add Tabel</h4>
+                <Form.Control
+                  type="text"
+                  placeholder="Username"
+                  required
+                  value={username} // Menambahkan value agar input terkait dengan state
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="forEmail">
+                <Form.Control
+                  type="email" // Mengubah tipe input ke 'email'
+                  placeholder="Email"
+                  required
+                  value={email} // Menambahkan value agar input terkait dengan state
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="forPassword">
+                <Form.Control
+                  type="password" // Mengubah tipe input ke 'password'
+                  placeholder="Password"
+                  required
+                  value={password} // Menambahkan value agar input terkait dengan state
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
+              <Button
+                style={{
+                  background: "grey",
+                  width: "130px",
+                  height: "40px",
+                  borderRadius: "10px",
+                  backgroundColor: "blue",
+                  transform: "translate(-15%, -20%)",
+                }}
+                type="submit"
+              >
+                Submit
+              </Button>
+              <button
+                onClick={kembali}
+                style={{
+                  width: "130px",
+                  height: "40px",
+                  transform: "translate(17%, -20%)",
+                  borderRadius: "10px",
+                  backgroundColor: "red",
+                  color: "white",
+                }}
+              >
+                kembali
+              </button>
+            </div>
           </Form>
         ) : (
           //tabel super visor END
@@ -160,51 +175,65 @@ function Add() {
             style={{ margin: "15rem" }}
             onSubmit={handelSubmit} // Menambahkan event handler untuk form submission
           >
-            <Form.Group className="mb-3" controlId="forUsername">
-              <h4>Add Tabel</h4>
-              <Form.Control
-                type="text"
-                placeholder="Nomer lantai"
-                required
-                value={noLantai} // Menambahkan value agar input terkait dengan state
-                onChange={(e) => setNoLantai(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="forEmail">
-              <Form.Control
-                type="text" // Mengubah tipe input ke 'email'
-                placeholder="Nomor kamar"
-                required
-                value={noKamar} // Menambahkan value agar input terkait dengan state
-                onChange={(e) => setNoKamar(e.target.value)}
-              />
-            </Form.Group>
+            <div
+              className="home"
+              style={{
+                // backgroundColor: "grey",
+                border: "1px solid black",
+                backgroundColor: " grey",
+                width: "345px",
+                height: "250px",
+                padding: "20px",
+                borderRadius: "10px",
+              }}
+            >
+              <Form.Group className="mb-3" controlId="forUsername">
+                <h4>Add Tabel</h4>
+                <Form.Control
+                  type="text"
+                  placeholder="Nomer lantai"
+                  required
+                  value={noLantai} // Menambahkan value agar input terkait dengan state
+                  onChange={(e) => setNoLantai(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="forEmail">
+                <Form.Control
+                  type="text" // Mengubah tipe input ke 'email'
+                  placeholder="Nomor kamar"
+                  required
+                  value={noKamar} // Menambahkan value agar input terkait dengan state
+                  onChange={(e) => setNoKamar(e.target.value)}
+                />
+              </Form.Group>
 
-            <Button
-              style={{
-                background: "purple",
-                width: "100px",
-                height: "40px",
-                borderRadius: "10px",
-                backgroundColor: "blue",
-              }}
-              type="submit"
-            >
-              Submit
-            </Button>
-            <button
-              onClick={kembali}
-              style={{
-                width: "100px",
-                height: "40px",
-                transform: "translate(110%, -120%)",
-                borderRadius: "10px",
-                backgroundColor: "red",
-                color: "white",
-              }}
-            >
-              kembali
-            </button>
+              <Button
+                style={{
+                  background: "grey",
+                  width: "140px",
+                  height: "40px",
+                  borderRadius: "10px",
+                  backgroundColor: "blue",
+                  transform: "translate(-8%, -20%)",
+                }}
+                type="submit"
+              >
+                Submit
+              </Button>
+              <button
+                onClick={kembali}
+                style={{
+                  width: "140px",
+                  height: "40px",
+                  transform: "translate(10%, -20%)",
+                  borderRadius: "10px",
+                  backgroundColor: "red",
+                  color: "white",
+                }}
+              >
+                kembali
+              </button>
+            </div>
           </Form>
 
           //tabel operator END

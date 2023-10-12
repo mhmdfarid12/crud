@@ -185,7 +185,7 @@ function Tabel() {
     <div
       style={{
         backgroundImage:
-          "url(https://www.gotravelly.com/blog/wp-content/uploads/2019/10/Gunung-Fuji-Jepang-1024x640.jpg)",
+          "url(https://img.freepik.com/free-vector/paper-style-white-monochrome-background_23-2149000982.jpg?w=826&t=st=1697102479~exp=1697103079~hmac=1c79075f3069e702f954e9de0789b464a3dc62c98b37d0c76da2f4b9f244d670)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -197,12 +197,12 @@ function Tabel() {
           //tabel dari super visor START
           <Fragment>
             <Navbar
-              style={{ background: "purple" }}
+              style={{ background: "grey" }}
               bg="light"
               expand="lg"
               className="bg-body-tertiary"
             >
-              <Container style={{ background: "purple" }}>
+              <Container style={{ background: "rgb(4, 77, 85)" }}>
                 <Navbar.Brand href="#home">Sewa ruang</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -299,7 +299,7 @@ function Tabel() {
                           <td>
                             <Link to={`/edit/${item.id}`}>
                               <Button
-                                style={{ background: "purple" }}
+                                style={{ background: "grey" }}
                                 onClick={() =>
                                   handleEdit(
                                     item.id,
@@ -314,7 +314,7 @@ function Tabel() {
                             </Link>
                             &nbsp;
                             <Button
-                              style={{ background: "purple" }}
+                              style={{ background: "grey" }}
                               onClick={() => handleDelete(item.id)}
                             >
                               DELETE
@@ -347,7 +347,7 @@ function Tabel() {
 
               <br />
               <Link className="d-grid gap-2" to="/create">
-                <Button style={{ background: "purple" }} size="lg">
+                <Button style={{ background: "grey" }} size="lg">
                   Create
                 </Button>
               </Link>
@@ -359,12 +359,12 @@ function Tabel() {
           //tabel operator START
           <Fragment>
             <Navbar
-              style={{ background: "purple" }}
+              style={{ background: "grey" }}
               bg="light"
               expand="lg"
               className="bg-body-tertiary"
             >
-              <Container style={{ background: "purple" }}>
+              <Container style={{ background: "grey" }}>
                 <Navbar.Brand href="#home">Sewa ruang</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -457,7 +457,7 @@ function Tabel() {
                           <td>
                             <Link to={`/edit/${item.id}`}>
                               <Button
-                                style={{ background: "purple" }}
+                                style={{ background: "grey" }}
                                 onClick={() =>
                                   edit(item.id, item.noLantai, item.noKamar)
                                 }
@@ -467,7 +467,7 @@ function Tabel() {
                             </Link>
                             &nbsp;
                             <Button
-                              style={{ background: "purple" }}
+                              style={{ background: "grey" }}
                               onClick={() => del(item.id)}
                             >
                               DELETE
@@ -500,7 +500,7 @@ function Tabel() {
 
               <br />
               <Link className="d-grid gap-2" to="/create">
-                <Button style={{ background: "purple" }} size="lg">
+                <Button style={{ background: "grey" }} size="lg">
                   Create
                 </Button>
               </Link>

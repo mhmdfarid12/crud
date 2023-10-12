@@ -319,7 +319,7 @@ const Profil = () => {
                             <Modal.Footer>
                               <Button
                                 style={{
-                                  background: "purple",
+                                  background: "grey",
                                   borderRadius: "10px",
                                 }}
                                 variant="secondary"
@@ -329,7 +329,7 @@ const Profil = () => {
                               </Button>
                               <Button
                                 style={{
-                                  background: "purple",
+                                  background: "grey",
                                   borderRadius: "10px",
                                 }}
                                 variant="primary"

@@ -83,7 +83,7 @@ function Edit() {
       <div
         style={{
           backgroundImage:
-            "url(https://www.gotravelly.com/blog/wp-content/uploads/2019/10/Gunung-Fuji-Jepang-1024x640.jpg)",
+            "url(https://img.freepik.com/free-vector/paper-style-white-monochrome-background_23-2149000982.jpg?w=826&t=st=1697102479~exp=1697103079~hmac=1c79075f3069e702f954e9de0789b464a3dc62c98b37d0c76da2f4b9f244d670)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -94,114 +94,143 @@ function Edit() {
         }}
       >
         {/* //edit super visor start */}
+
         <div className="home">
           {userRole === "supervisor" ? (
-            <Form className="d-grid gap-2" style={{ width: "300px" }}>
-              <h4>Edit Tabel</h4>
-              <Form.Group className="mb-3" controlId="forName">
-                <Form.Control
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  required
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="forAge">
-                <Form.Control
-                  type="text"
-                  placeholder="Email"
-                  value={email}
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="forAge">
-                <Form.Control
-                  type="text"
-                  placeholder="Password"
-                  value={password}
-                  required
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Form.Group>
-              <Button
-                style={{
-                  background: "purple",
-                  width: "143px",
-                  height: "40px",
-                  borderRadius: "10px",
-                  backgroundColor: "blue",
-                }}
-                onClick={(e) => handleSubmit(e)}
-                type="submit"
-              >
-                UPDATE
-              </Button>
-              <button
-                onClick={kembali}
-                style={{
-                  width: "143px",
-                  height: "40px",
-                  transform: "translate(110%, -120%)",
-                  borderRadius: "10px",
-                  backgroundColor: "red",
-                  color: "white",
-                }}
-              >
-                kembali
-              </button>
-            </Form>
+            <div
+              className="home"
+              style={{
+                // backgroundColor: "grey",
+                border: "1px solid black",
+                backgroundColor: " grey",
+                width: "345px",
+                height: "250px",
+                padding: "20px",
+                borderRadius: "10px",
+              }}
+            >
+              <Form className="d-grid gap-2" style={{ width: "300px" }}>
+                <h4>Edit Tabel</h4>
+                <Form.Group className="mb-3" controlId="forName">
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    required
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="forAge">
+                  <Form.Control
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="forAge">
+                  <Form.Control
+                    type="text"
+                    placeholder="Password"
+                    value={password}
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </Form.Group>
+                <Button
+                  style={{
+                    background: "grey",
+                    width: "143px",
+                    height: "40px",
+                    borderRadius: "10px",
+                    backgroundColor: "blue",
+                  }}
+                  onClick={(e) => handleSubmit(e)}
+                  type="submit"
+                >
+                  UPDATE
+                </Button>
+                <button
+                  onClick={kembali}
+                  style={{
+                    width: "143px",
+                    height: "40px",
+                    transform: "translate(110%, -120%)",
+                    borderRadius: "10px",
+                    backgroundColor: "red",
+                    color: "white",
+                  }}
+                >
+                  kembali
+                </button>
+              </Form>
+            </div>
           ) : (
             //edit super visor END
             //edit operator START
-            <Form className="d-grid gap-2" style={{ width: "300px" }}>
-              <h4>Edit Tabel</h4>
-              <Form.Group className="mb-3" controlId="forName">
-                <Form.Control
-                  type="text"
-                  placeholder="Nomer lantai"
-                  value={noLantai}
-                  required
-                  onChange={(e) => setNolantai(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="forAge">
-                <Form.Control
-                  type="text"
-                  placeholder="Nomor kamar"
-                  value={noKamar}
-                  required
-                  onChange={(e) => setNokamar(e.target.value)}
-                />
-              </Form.Group>
 
-              <Button
+            <Form className="d-grid gap-2" style={{ width: "300px" }}>
+              <div
+                className="home"
                 style={{
-                  background: "purple",
-                  width: "143px",
-                  height: "40px",
+                  // backgroundColor: "grey",
+                  border: "1px solid black",
+                  backgroundColor: " grey",
+                  width: "345px",
+                  height: "250px",
+                  padding: "20px",
                   borderRadius: "10px",
-                  backgroundColor: "blue",
-                }}
-                onClick={(e) => Submit(e)}
-                type="submit"
-              >
-                UPDATE
-              </Button>
-              <button
-                onClick={kembali}
-                style={{
-                  width: "143px",
-                  height: "40px",
-                  transform: "translate(110%, -120%)",
-                  borderRadius: "10px",
-                  backgroundColor: "red",
-                  color: "white",
                 }}
               >
-                kembali
-              </button>
+                <h4>Edit Tabel</h4>
+                <Form.Group className="mb-3" controlId="forName">
+                  <Form.Control
+                    type="text"
+                    placeholder="Nomer lantai"
+                    value={noLantai}
+                    required
+                    onChange={(e) => setNolantai(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="forAge">
+                  <Form.Control
+                    type="text"
+                    placeholder="Nomor kamar"
+                    value={noKamar}
+                    required
+                    onChange={(e) => setNokamar(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Button
+                  style={{
+                    background: "grey",
+                    width: "143px",
+                    height: "40px",
+                    borderRadius: "10px",
+                    backgroundColor: "blue",
+                    transform: "translate(-5%, -5%)",
+                  }}
+                  onClick={(e) => Submit(e)}
+                  type="submit"
+                >
+                  UPDATE
+                </Button>
+                <button
+                  onClick={kembali}
+                  style={{
+                    width: "143px",
+                    height: "40px",
+                    transform: "translate(7%, -5%)",
+                    borderRadius: "10px",
+                    backgroundColor: "red",
+                    color: "white",
+                  }}
+                >
+                  kembali
+                </button>
+              </div>
             </Form>
             //edit operator END
           )}
