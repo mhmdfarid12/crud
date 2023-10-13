@@ -424,11 +424,15 @@ function ReportSewa() {
                       <td>{item.booking}</td>
                       <td>
                         <Link to={`/editReportSewa/${item.id}`}>
-                          <Button style={{ background: "grey" }}>EDIT</Button>
+                          <Button
+                            style={{ background: "grey", border: "none" }}
+                          >
+                            EDIT
+                          </Button>
                         </Link>
                         &nbsp;
                         <Button
-                          style={{ background: "grey" }}
+                          style={{ background: "grey", border: "none" }}
                           onClick={() => handleDelete(item.id)}
                         >
                           DELETE
@@ -454,7 +458,10 @@ function ReportSewa() {
               </Pagination>
               <br></br>
               <Link className="d-grid gap-2" to="/AddReportSewa">
-                <Button style={{ background: "grey" }} size="lg">
+                <Button
+                  style={{ background: "grey", border: "none" }}
+                  size="lg"
+                >
                   Create
                 </Button>
               </Link>

@@ -73,13 +73,6 @@ function Tabel() {
     }
   }
 
-  const handleEdit = (id, username, email, password) => {
-    localStorage.setItem("username", username);
-    localStorage.setItem("email", email);
-    localStorage.setItem("Id", id);
-    localStorage.setItem("password", password);
-  };
-
   const handleDelete = async (id) => {
     try {
       const respons = await axios.delete(
@@ -145,12 +138,6 @@ function Tabel() {
     }
   }
 
-  const edit = (id, noLantai, noKamar) => {
-    localStorage.setItem("noLantai", noLantai);
-    localStorage.setItem("noKamar", noKamar);
-    localStorage.setItem("Id", id);
-  };
-
   const del = async (id) => {
     try {
       const respons = await axios.delete(` http://localhost:1234/rooms/${id}`);
@@ -202,7 +189,7 @@ function Tabel() {
               expand="lg"
               className="bg-body-tertiary"
             >
-              <Container style={{ background: "rgb(4, 77, 85)" }}>
+              <Container style={{ background: "grey" }}>
                 <Navbar.Brand href="#home">Sewa ruang</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -299,22 +286,14 @@ function Tabel() {
                           <td>
                             <Link to={`/edit/${item.id}`}>
                               <Button
-                                style={{ background: "grey" }}
-                                onClick={() =>
-                                  handleEdit(
-                                    item.id,
-                                    item.username,
-                                    item.email,
-                                    item.password
-                                  )
-                                }
+                                style={{ background: "grey", border: "none" }}
                               >
                                 EDIT
                               </Button>
                             </Link>
                             &nbsp;
                             <Button
-                              style={{ background: "grey" }}
+                              style={{ background: "grey", border: "none" }}
                               onClick={() => handleDelete(item.id)}
                             >
                               DELETE
@@ -347,7 +326,14 @@ function Tabel() {
 
               <br />
               <Link className="d-grid gap-2" to="/create">
-                <Button style={{ background: "grey" }} size="lg">
+                <Button
+                  style={{
+                    background: "grey",
+
+                    border: "none",
+                  }}
+                  size="lg"
+                >
                   Create
                 </Button>
               </Link>
@@ -457,17 +443,14 @@ function Tabel() {
                           <td>
                             <Link to={`/edit/${item.id}`}>
                               <Button
-                                style={{ background: "grey" }}
-                                onClick={() =>
-                                  edit(item.id, item.noLantai, item.noKamar)
-                                }
+                                style={{ background: "grey", border: "none" }}
                               >
                                 EDIT
                               </Button>
                             </Link>
                             &nbsp;
                             <Button
-                              style={{ background: "grey" }}
+                              style={{ background: "grey", border: "none" }}
                               onClick={() => del(item.id)}
                             >
                               DELETE
@@ -500,7 +483,10 @@ function Tabel() {
 
               <br />
               <Link className="d-grid gap-2" to="/create">
-                <Button style={{ background: "grey" }} size="lg">
+                <Button
+                  style={{ background: "grey", border: "none" }}
+                  size="lg"
+                >
                   Create
                 </Button>
               </Link>

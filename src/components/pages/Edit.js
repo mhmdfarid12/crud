@@ -26,6 +26,36 @@ function Edit() {
     setId(localStorage.getItem("Id"));
   }, []);
 
+  const getByAccountsId = async () => {
+    try {
+      const respons = await axios.get(
+        `http://localhost:1234/accounts/${param.id}`
+      );
+      const resData = respons.data;
+      setUsername(resData.username);
+      setEmail(resData.email);
+      setPassword(resData.password);
+
+      console.log(resData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getByRoomsId = async () => {
+    try {
+      const respons = await axios.get(
+        `  http://localhost:1234/rooms/${param.id}`
+      );
+      const resData = respons.data;
+      setNolantai(resData.noLantai);
+      setNokamar(resData.noKamar);
+
+      console.log(resData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,8 +81,8 @@ function Edit() {
 
   //const operator Start
   useEffect(() => {
-    setNolantai(localStorage.getItem("noKamar"));
-    setNokamar(localStorage.getItem("noKamar"));
+    getByAccountsId();
+    getByRoomsId();
   }, []);
 
   const Submit = async (e) => {
@@ -104,7 +134,7 @@ function Edit() {
                 border: "1px solid black",
                 backgroundColor: " grey",
                 width: "345px",
-                height: "250px",
+                height: "350px",
                 padding: "20px",
                 borderRadius: "10px",
               }}
@@ -112,6 +142,7 @@ function Edit() {
               <Form className="d-grid gap-2" style={{ width: "300px" }}>
                 <h4>Edit Tabel</h4>
                 <Form.Group className="mb-3" controlId="forName">
+                  <label>Name</label>
                   <Form.Control
                     type="text"
                     placeholder="Username"
@@ -121,6 +152,7 @@ function Edit() {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="forAge">
+                  <label>Phone</label>
                   <Form.Control
                     type="text"
                     placeholder="Email"
@@ -130,6 +162,7 @@ function Edit() {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="forAge">
+                  <label>Pay Method</label>
                   <Form.Control
                     type="text"
                     placeholder="Password"
@@ -178,12 +211,14 @@ function Edit() {
                   border: "1px solid black",
                   backgroundColor: " grey",
                   width: "345px",
-                  height: "250px",
+                  height: "300px",
                   padding: "20px",
                   borderRadius: "10px",
                 }}
               >
                 <h4>Edit Tabel</h4>
+                <br></br>
+                <label>Nomor Lantai</label>
                 <Form.Group className="mb-3" controlId="forName">
                   <Form.Control
                     type="text"
@@ -193,6 +228,7 @@ function Edit() {
                     onChange={(e) => setNolantai(e.target.value)}
                   />
                 </Form.Group>
+                <label>Nomor Kamar</label>
                 <Form.Group className="mb-3" controlId="forAge">
                   <Form.Control
                     type="text"

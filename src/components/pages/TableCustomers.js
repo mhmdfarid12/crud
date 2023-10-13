@@ -60,13 +60,6 @@ function TableCustomers() {
     }
   }
 
-  const handleEdit = (id, name, phone, payMethod) => {
-    localStorage.setItem("Id", id);
-    localStorage.setItem("name", name);
-    localStorage.setItem("phone", phone);
-    localStorage.setItem("payMethod", payMethod);
-  };
-
   const handleDelete = async (id) => {
     try {
       const respons = await axios.delete(
@@ -212,22 +205,14 @@ function TableCustomers() {
                         <td>
                           <Link to={`/editCustomers/${item.id}`}>
                             <Button
-                              style={{ background: "grey" }}
-                              onClick={() =>
-                                handleEdit(
-                                  item.id,
-                                  item.name,
-                                  item.phone,
-                                  item.payMethod
-                                )
-                              }
+                              style={{ background: "grey", border: "none" }}
                             >
                               EDIT
                             </Button>
                           </Link>
                           &nbsp;
                           <Button
-                            style={{ background: "grey" }}
+                            style={{ background: "grey", border: "none" }}
                             onClick={() => handleDelete(item.id)}
                           >
                             DELETE
@@ -260,7 +245,7 @@ function TableCustomers() {
 
             <br />
             <Link className="d-grid gap-2" to="/addCustomers">
-              <Button style={{ background: "grey" }} size="lg">
+              <Button style={{ background: "grey", border: "none" }} size="lg">
                 Create
               </Button>
             </Link>

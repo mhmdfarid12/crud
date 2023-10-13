@@ -101,12 +101,14 @@ function EditOrders() {
               border: "1px solid black",
               backgroundColor: " grey",
               width: "345px",
-              height: "570px",
+              height: "670px",
               padding: "20px",
               borderRadius: "10px",
             }}
           >
             <h4>Edit Order</h4>
+            <br></br>
+            <label>Rooms</label>
             <Form className="d-grid gap-2" style={{ width: "300px" }}>
               <Form.Group className="mb-3" controlId="name">
                 <Form.Control
@@ -117,6 +119,7 @@ function EditOrders() {
                   onChange={(e) => setRooms(e.target.value)}
                 />
               </Form.Group>
+              <label>Capacity</label>
               <Form.Group className="mb-3" controlId="phone">
                 <Form.Control
                   type="text"
@@ -126,6 +129,7 @@ function EditOrders() {
                   onChange={(e) => setCapacity(e.target.value)}
                 />
               </Form.Group>
+              <label>Booking</label>
               <Form.Group className="mb-3" controlId="phone">
                 <Form.Control
                   type="text"

@@ -87,11 +87,15 @@ const Profil = () => {
   return (
     <div
       style={{
-        backgroundColor: "white",
-
+        backgroundImage:
+          "url(https://img.freepik.com/free-vector/paper-style-white-monochrome-background_23-2149000982.jpg?w=826&t=st=1697102479~exp=1697103079~hmac=1c79075f3069e702f954e9de0789b464a3dc62c98b37d0c76da2f4b9f244d670)",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <button
@@ -124,22 +128,39 @@ const Profil = () => {
                   <div className="panel panel-default">
                     <div className="profil">
                       <br></br>
-                      <img
+                      <br></br>
+                      <br></br>
+                      <div
                         style={{
-                          display: "flex",
-                          justifyContent: "auto",
+                          background: "purple",
+
                           borderRadius: "50%",
-                          width: "200px",
-                          height: "200px",
+                          width: "210px",
+                          height: "210px",
+                          top: "-25px",
+                          left: "-3px",
+                          position: "absolute",
                         }}
-                        src={
-                          avatarUrl !== ""
-                            ? avatarUrl
-                            : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"
-                        }
-                        className="img-circle profile-avatar"
-                        alt="User avatar"
-                      />
+                      >
+                        <img
+                          style={{
+                            display: "flex",
+                            justifyContent: "auto",
+                            borderRadius: "50%",
+                            width: "200px",
+                            height: "200px",
+
+                            zIndex: "2",
+                          }}
+                          src={
+                            avatarUrl !== ""
+                              ? avatarUrl
+                              : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"
+                          }
+                          className="img-circle profile-avatar"
+                          alt="User avatar"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="kolom">
@@ -229,7 +250,8 @@ const Profil = () => {
                             style={{
                               borderRadius: "10px",
                               height: "40px",
-                              transform: "translate(-100%, -50%)",
+                              width: "180px",
+                              transform: "translate(-15%, -40%)",
                             }}
                             variant="primary"
                             onClick={handleShow}
@@ -239,9 +261,11 @@ const Profil = () => {
                           <button
                             onClick={Logout}
                             style={{
-                              transform: "translate(-65%, -50%)",
+                              transform: "translate(100%, -140%)",
                               height: "40px",
+                              width: "180px",
                               borderRadius: "10px",
+                              border: "none",
                               backgroundColor: "red",
                               color: "white",
                             }}
@@ -251,7 +275,7 @@ const Profil = () => {
 
                           <Modal show={show} onHide={handleClose}>
                             <Modal.Header closeButton>
-                              <Modal.Title>Modal heading</Modal.Title>
+                              <Modal.Title>EDIT PROFILE</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                               <div className="form-group">

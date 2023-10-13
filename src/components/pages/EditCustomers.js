@@ -16,6 +16,22 @@ function EditCustomers() {
   let history = useNavigate();
   const param = useParams();
 
+  const getById = async () => {
+    try {
+      const respons = await axios.get(
+        `http://localhost:1234/customers/${param.id}`
+      );
+      const resData = respons.data;
+      setName(resData.rooms);
+      setPhone(resData.phone);
+      setPayMethod(resData.payMethod);
+
+      console.log(resData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const riquest = {
@@ -41,10 +57,7 @@ function EditCustomers() {
   };
 
   useEffect(() => {
-    setName(localStorage.getItem("name"));
-    setPhone(localStorage.getItem("phone"));
-    setPayMethod(localStorage.getItem("payMethod"));
-    setId(localStorage.getItem("Id"));
+    getById();
   }, []);
 
   //const super visor END
@@ -72,7 +85,7 @@ function EditCustomers() {
               border: "1px solid black",
               backgroundColor: " grey",
               width: "345px",
-              height: "350px",
+              height: "400px",
               padding: "20px",
               borderRadius: "10px",
             }}
@@ -80,6 +93,7 @@ function EditCustomers() {
             <h4>Edit Customers</h4>
             <Form className="d-grid gap-2" style={{ width: "300px" }}>
               <Form.Group className="mb-3" controlId="name">
+                <label>Name</label>
                 <Form.Control
                   type="text"
                   placeholder="name"
@@ -89,6 +103,7 @@ function EditCustomers() {
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="phone">
+                <label>Phone</label>
                 <Form.Control
                   type="text"
                   placeholder="Phone"
@@ -98,7 +113,7 @@ function EditCustomers() {
                 />
               </Form.Group>
               <label htmlFor="payMethod">
-                <div>payMethod:</div>
+                <label>payMethod</label>
                 <select
                   className=""
                   style={{

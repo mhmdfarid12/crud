@@ -16,13 +16,12 @@
 
 
 .cardbody-color{
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0,0,0,.7);
  border-radius: 10px;
   width: 60%;
   height: 1%;
   margin: auto;
 }
-
 a{
   text-decoration: none;
 }

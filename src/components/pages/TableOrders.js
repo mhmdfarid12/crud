@@ -418,11 +418,15 @@ function TableOrders() {
                       <td>{item.booking}</td>
                       <td>
                         <Link to={`/editOrders/${item.id}`}>
-                          <Button style={{ background: "grey" }}>EDIT</Button>
+                          <Button
+                            style={{ background: "grey", border: "none" }}
+                          >
+                            EDIT
+                          </Button>
                         </Link>
                         &nbsp;
                         <Button
-                          style={{ background: "grey" }}
+                          style={{ background: "grey", border: "none" }}
                           onClick={() => handleDelete(item.id)}
                         >
                           DELETE
@@ -448,7 +452,10 @@ function TableOrders() {
               </Pagination>
               <br></br>
               <Link className="d-grid gap-2" to="/addOrders">
-                <Button style={{ background: "grey" }} size="lg">
+                <Button
+                  style={{ background: "grey", border: "none" }}
+                  size="lg"
+                >
                   Create
                 </Button>
               </Link>

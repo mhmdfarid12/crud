@@ -101,13 +101,14 @@ function EditReportSewa() {
               border: "1px solid black",
               backgroundColor: " grey",
               width: "345px",
-              height: "570px",
+              height: "690px",
               padding: "20px",
               borderRadius: "10px",
             }}
           >
             <Form className="d-grid gap-2">
-              <h4>Edit Report sewa</h4>
+              <h4>Edit Report Sewa</h4>
+              <label>Rooms</label>
               <Form.Group className="mb-3" controlId="name">
                 <Form.Control
                   type="text"
@@ -117,6 +118,7 @@ function EditReportSewa() {
                   onChange={(e) => setRooms(e.target.value)}
                 />
               </Form.Group>
+              <label>Capacity</label>
               <Form.Group className="mb-3" controlId="phone">
                 <Form.Control
                   type="text"
@@ -126,6 +128,7 @@ function EditReportSewa() {
                   onChange={(e) => setCapacity(e.target.value)}
                 />
               </Form.Group>
+              <label>Booking</label>
               <Form.Group className="mb-3" controlId="phone">
                 <Form.Control
                   type="text"
@@ -135,6 +138,7 @@ function EditReportSewa() {
                   onChange={(e) => setBooking(e.target.value)}
                 />
               </Form.Group>
+              <label>Date Time</label>
               <Form.Group className="mb-3" controlId="phone">
                 <Form.Control
                   type="text"

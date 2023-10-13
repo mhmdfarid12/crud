@@ -71,6 +71,11 @@ const Home = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <br></br>
       <div className="home">
         {userRole === "supervisor" ? (
