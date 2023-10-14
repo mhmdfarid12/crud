@@ -175,6 +175,13 @@
       "password": "1234567",
       "avatarUrl": "https://i.pinimg.com/236x/e9/13/9a/e9139a5d7ef7f5244cf4b0148c548313.jpg",
       "role": "supervisor"
+    },
+    {
+      "id": "8b59fa10",
+      "username": "adib",
+      "email": "adib@gmail.com",
+      "password": "1234567",
+      "role": "supervisor"
     }
   ],
   "customers": [

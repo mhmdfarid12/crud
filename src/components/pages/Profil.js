@@ -3,6 +3,9 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Dropdown from "react-bootstrap/Dropdown";
+
 import { useNavigate } from "react-router-dom";
 
 const Profil = () => {
@@ -98,28 +101,13 @@ const Profil = () => {
         alignItems: "center",
       }}
     >
-      <button
-        onClick={kembali}
-        style={{
-          transform: "translate(-755px, 10px)",
-
-          height: "40px",
-          borderRadius: "10px",
-          backgroundColor: "red",
-          color: "white",
-        }}
-      >
-        kembali
-      </button>
-      <br></br>
-      <br></br>
-      <br></br>
       <div className="baground">
         <div>
           <link
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
             rel="stylesheet"
           />
+          <br></br>
           <br></br>
           <div className="container bootstrap snippets bootdeys">
             <div className="row">
@@ -130,50 +118,70 @@ const Profil = () => {
                       <br></br>
                       <br></br>
                       <br></br>
-                      <div
-                        style={{
-                          background: "purple",
 
-                          borderRadius: "50%",
-                          width: "210px",
-                          height: "210px",
+                      <div
+                        className="bagroundPr"
+                        style={{
+                          background: "",
+                          transform: "translate(-25%, 20%)",
+                          borderRadius: "10%",
+                          width: "420px",
+                          height: "520px",
                           top: "-25px",
                           left: "-3px",
+
                           position: "absolute",
                         }}
                       >
-                        <img
+                        <div
                           style={{
-                            display: "flex",
-                            justifyContent: "auto",
-                            borderRadius: "50%",
-                            width: "200px",
-                            height: "200px",
+                            background: "grey",
 
+                            borderRadius: "50%",
+                            width: "220px",
+                            height: "220px",
+                            transform: "translate(45%, -60%)",
+                            position: "absolute",
                             zIndex: "2",
                           }}
-                          src={
-                            avatarUrl !== ""
-                              ? avatarUrl
-                              : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"
-                          }
-                          className="img-circle profile-avatar"
-                          alt="User avatar"
-                        />
+                        >
+                          <img
+                            style={{
+                              display: "flex",
+                              justifyContent: "auto",
+                              borderRadius: "50%",
+                              top: "-105px",
+                              transform: "translate(5%, 5%)",
+                              width: "200px",
+                              height: "200px",
+
+                              zIndex: "2",
+                            }}
+                            src={
+                              avatarUrl !== ""
+                                ? avatarUrl
+                                : "https://divedigital.id/wp-content/uploads/2021/10/1-min.png"
+                            }
+                            className="img-circle profile-avatar"
+                            alt="User avatar"
+                          />
+                        </div>
                       </div>
-                    </div>
+                    </div>{" "}
                   </div>
                   <div className="kolom">
                     <div className="panel-heading">
-                      <h1
+                      <strong
                         style={{
-                          textAlign: "center",
-                          transform: "translate(15%, -50%)",
+                          fontSize: "30px",
+                          position: "absolute",
+                          top: "-60px",
+                          left: "80px",
                         }}
                         className="panel-title"
                       >
                         MY PROFILE
-                      </h1>
+                      </strong>
                     </div>
                     <div className="panel-body">
                       <div className="form-group">
@@ -189,8 +197,8 @@ const Profil = () => {
                         <div className="col-sm-10">
                           <input
                             style={{
-                              width: "400px",
                               height: "60px",
+                              width: "350px",
                               borderRadius: "20px",
                             }}
                             value={username}
@@ -212,8 +220,8 @@ const Profil = () => {
                         <div className="col-sm-10">
                           <input
                             style={{
-                              width: "400px",
                               height: "60px",
+                              width: "350px",
                               borderRadius: "20px",
                             }}
                             value={email}
@@ -235,8 +243,8 @@ const Profil = () => {
                         <div className="col-sm-10">
                           <input
                             style={{
-                              width: "400px",
                               height: "60px",
+                              width: "350px",
                               borderRadius: "20px",
                             }}
                             value={role}
@@ -245,34 +253,57 @@ const Profil = () => {
                             onChange={(e) => setRole(e.target.value)}
                           />
                           <br></br>
-
-                          <Button
+                          <div
                             style={{
-                              borderRadius: "10px",
-                              height: "40px",
-                              width: "180px",
-                              transform: "translate(-15%, -40%)",
-                            }}
-                            variant="primary"
-                            onClick={handleShow}
-                          >
-                            EDIT
-                          </Button>
-                          <button
-                            onClick={Logout}
-                            style={{
-                              transform: "translate(100%, -140%)",
-                              height: "40px",
-                              width: "180px",
-                              borderRadius: "10px",
-                              border: "none",
-                              backgroundColor: "red",
-                              color: "white",
+                              display: "flex",
+                              gap: "40px",
+                              justifyContent: "center",
                             }}
                           >
-                            LOGOUT
-                          </button>
+                            <Button
+                              style={{
+                                borderRadius: "10px",
+                                height: "40px",
+                              }}
+                              variant="primary"
+                              onClick={handleShow}
+                            >
+                              EDIT
+                            </Button>
 
+                            <Dropdown
+                              as={ButtonGroup}
+                              style={{
+                                height: "40px",
+                                borderRadius: "10px",
+                                border: "none",
+
+                                color: "white",
+                              }}
+                            >
+                              <Button variant="danger" className="split">
+                                Split Button
+                              </Button>
+
+                              <Dropdown.Toggle
+                                split
+                                variant="success"
+                                id="dropdown-split-basic"
+                              />
+
+                              <Dropdown.Menu>
+                                <Dropdown.Item
+                                  onClick={kembali}
+                                  href="#/action-1"
+                                >
+                                  Kembali
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={Logout}>
+                                  Logout
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          </div>
                           <Modal show={show} onHide={handleClose}>
                             <Modal.Header closeButton>
                               <Modal.Title>EDIT PROFILE</Modal.Title>
